@@ -132,7 +132,7 @@ import AboutCard from "./AboutCard";
 const About = () => {
   return (
     <div className="bg-[#F5F5F7] py-8">
-      <div className="flex lg:flex-row flex-col max-w-7xl mx-auto px-4">
+      <div className="flex xl:flex-row flex-col max-w-7xl mx-auto px-4">
         {/* About Card - Always visible */}
         <div className="lg:flex-shrink-0 justify-center items-center flex">
           <AboutCard />
