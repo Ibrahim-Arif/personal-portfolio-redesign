@@ -90,7 +90,7 @@ const HonorsAwards = () => {
         </motion.div>
 
         {/* Desktop Grid - Hidden on mobile */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-12 px-4 md:px-8">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-x-8 gap-y-12 px-4 md:px-8 ">
           {awardsData.map((award, index) => (
             <AwardCard
               key={index}

@@ -1,11 +1,23 @@
-"use client";
-
-import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import React from "react";
 
-// Reusable Social Card Component
-const SocialCard = ({ platform, username, iconPath, gradientClass, index }) => {
+const SocialCard = ({
+  platform,
+  username,
+  iconPath,
+  gradientClass,
+  index,
+  link,
+}) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  const handleClick = () => {
+    if (link) {
+      window.open(link, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -50 }}
@@ -20,17 +32,32 @@ const SocialCard = ({ platform, username, iconPath, gradientClass, index }) => {
         scale: 1.05,
         transition: { duration: 0.2 },
       }}
-      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-52 cursor-pointer shadow-lg`}
+      whileTap={{ scale: 0.98 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={handleClick}
+      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-52 cursor-pointer shadow-lg overflow-hidden`}
     >
       <div className="flex justify-start">
-        <div className="w-8 h-8 sm:w-12 sm:h-12 relative">
+        <motion.div
+          className="w-8 h-8 sm:w-12 sm:h-12 relative"
+          animate={{
+            scale: isHovered ? 1.2 : 1,
+            rotate: isHovered ? 5 : 0,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 300,
+            damping: 15,
+          }}
+        >
           <Image
             src={iconPath}
             alt={`${platform} icon`}
             fill
             className="object-contain"
           />
-        </div>
+        </motion.div>
       </div>
       <div className="text-white">
         <h3 className="text-base sm:text-2xl md:text-2xl font-SfProDisplay-semibold mb-1 tracking-wide">
@@ -43,4 +70,5 @@ const SocialCard = ({ platform, username, iconPath, gradientClass, index }) => {
     </motion.div>
   );
 };
+
 export default SocialCard;

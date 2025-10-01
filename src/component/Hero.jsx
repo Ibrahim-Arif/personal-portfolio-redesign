@@ -91,8 +91,8 @@ export default function Hero() {
         <motion.button
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-          className="mt-6 w-[122px] h-[43px] bg-[#F70548] text-base text-white font-SfProDisplay-medium rounded-full shadow-lg hover:bg-[#F70548]/70 transition cursor-pointer"
+          transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+          className="mt-6 w-[122px] h-[43px] bg-[#F70548] text-base text-white font-SfProDisplay-medium rounded-full shadow-lg hover:bg-[#F70548]/70  cursor-pointer"
         >
           My Resume
         </motion.button>

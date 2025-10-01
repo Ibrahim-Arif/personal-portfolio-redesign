@@ -1,3 +1,4 @@
+import About from "@/component/About";
 import BuildBanner from "@/component/BuildBanner";
 import CTA from "@/component/CTA";
 import Feedback from "@/component/Feedback";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
+      <About />
       <div id="projects">
         <Project />
       </div>

@@ -77,11 +77,20 @@ const Feedback = () => {
           {feedbacks.map((feedback, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: -50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white rounded-4xl transition-all duration-300 hover:-translate-y-1 h-full border-2 border-[#E5E7EB]"
+              // transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{
+                duration: 1,
+                delay: index * 0.12,
+                ease: [0.16, 0.84, 0.44, 1],
+              }}
+              whileHover={{
+                y: -6,
+                transition: { duration: 0.3, ease: [0.22, 0.61, 0.36, 0.4] },
+              }}
+              className="bg-white rounded-4xl transition-shadow duration-300 h-full border-2 border-[#E5E7EB]"
             >
               <div className="flex flex-col justify-between px-5 py-4 h-full">
                 <div className="flex flex-col justify-between h-full">
@@ -110,14 +119,29 @@ const Feedback = () => {
                         {feedback.clientCountry}
                       </p>
                     </div>
-                    <a
+                    {/* <a
                       href={feedback.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-[#F0F0F0] rounded-full transition-colors"
                     >
                       <Linkedin className="h-5 w-5 text-black" />
-                    </a>
+                    </a> */}
+                    <motion.a
+                      href={feedback.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-2 bg-[#F0F0F0] rounded-full hover:bg-[#E0E0E0] transition-colors duration-300"
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.95 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 15,
+                      }}
+                    >
+                      <Linkedin className="h-5 w-5 text-black" />
+                    </motion.a>
                   </div>
                 </div>
               </div>

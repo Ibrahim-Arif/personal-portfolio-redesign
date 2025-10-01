@@ -47,14 +47,14 @@ const projectsData = [
 const ProjectCard = ({ project, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{
-        duration: 0.6,
-        delay: index * 0.1,
-        ease: "easeOut",
-      }}
+      // initial={{ opacity: 0, y: 50 }}
+      // whileInView={{ opacity: 1, y: 0 }}
+      // viewport={{ once: true, margin: "-100px" }}
+      // transition={{
+      //   duration: 0.6,
+      //   delay: index * 0.1,
+      //   ease: "easeOut",
+      // }}
       className="flex-shrink-0 w-[284px] md:w-[477px] overflow-hidden mx-3 cursor-grab active:cursor-grabbing"
     >
       {/* Image Container with Fixed Height */}
