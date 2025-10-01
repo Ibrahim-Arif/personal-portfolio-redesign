@@ -21,7 +21,7 @@ const ExpertiseTags = () => {
           duration: 1,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="bg-white rounded-3xl shadow-lg py-4 px-4 sm:px-3 w-full max-w-[320px] sm:max-w-sm"
+        className="bg-white rounded-3xl py-4 px-4 sm:px-3 w-full max-w-[320px] sm:max-w-sm"
       >
         {/* Title */}
         <motion.h2

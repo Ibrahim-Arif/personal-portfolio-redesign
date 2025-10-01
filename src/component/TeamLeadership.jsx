@@ -12,7 +12,7 @@ const TeamLeadership = () => {
           duration: 1,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="bg-white rounded-3xl shadow-lg p-9 md:p-7 w-full max-w-[350px] sm:max-w-md"
+        className="bg-white rounded-3xl p-9 md:p-7 w-full max-w-[350px] sm:max-w-md"
       >
         {/* Title */}
         <motion.h2

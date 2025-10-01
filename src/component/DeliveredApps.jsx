@@ -13,7 +13,7 @@ const DeliveredApps = () => {
         duration: 1.2,
         ease: [0.16, 0.84, 0.44, 1],
       }}
-      className="bg-white rounded-3xl shadow-2xl px-8 md:px-10 pt-4 w-full max-w-md overflow-hidden"
+      className="bg-white rounded-3xl px-8 md:px-10 pt-4 w-full max-w-md overflow-hidden"
     >
       {/* Title Section */}
       <motion.div
