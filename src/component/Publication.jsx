@@ -149,29 +149,32 @@ const SmartGuard = () => {
           </div>
 
           {/* Right Image - Fade from right */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
-            className="flex-1 w-full relative order-1 lg:order-2 md:w-[24rem] lg:w-full md:-right-1/40 lg:right-0"
-          >
+
+          <div className="flex justify-center lg:justify-end order-1 lg:order-2">
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-              className="relative max-w-sm h-72 sm:h-96 lg:h-96 xl:ml-auto"
+              transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+              className="flex-1 w-full relative "
             >
-              <Image
-                src="/images/publication.png"
-                alt="SmartGuard Surveillance"
-                fill
-                className="object-contain"
-                priority
-              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
+                className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-[28rem] lg:h-[28rem]"
+              >
+                <Image
+                  src="/images/publication.png"
+                  alt="SmartGuard Surveillance"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </motion.div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </div>
