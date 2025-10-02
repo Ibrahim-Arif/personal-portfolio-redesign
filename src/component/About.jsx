@@ -164,15 +164,15 @@ const About = () => {
           </div>
 
           {/* Mobile/Tablet View - Below XL - Swiper Carousel */}
-          <div className="xl:hidden pt-12 pb-12">
+          <div className="sm:hidden pt-12 pb-12">
             <Swiper
               modules={[Autoplay, Pagination]}
               spaceBetween={16}
               slidesPerView="auto"
-              centeredSlides={true}
+              centeredSlides={false}
               autoplay={{
                 delay: 3000,
-                disableOnInteraction: false,
+                disableOnInteraction: true,
               }}
               pagination={{
                 clickable: true,
