@@ -64,7 +64,7 @@ const CareerJourneyCard = () => {
           duration: 1,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="bg-white rounded-3xl px-5 py-6 w-full max-w-[355px] sm:max-w-[500px]"
+        className="bg-white rounded-3xl px-5 py-6 w-full max-w-[341px] xs:max-w-sm sm:max-w-[500px]"
       >
         <h2 className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-8">
           Career <span className="text-[#F70548]">Journey</span>
