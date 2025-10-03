@@ -12,7 +12,7 @@ const TeamLeadership = () => {
           duration: 1,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="bg-white rounded-3xl p-9 md:p-7 w-full max-w-[350px] sm:max-w-md"
+        className="bg-white rounded-3xl p-7 w-full max-w-sm sm:max-w-md"
       >
         {/* Title */}
         <motion.h2
@@ -23,7 +23,7 @@ const TeamLeadership = () => {
             delay: 0.2,
             ease: [0.16, 0.84, 0.44, 1],
           }}
-          className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-[90px] sm:mb-8"
+          className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-[108px] xs:mb-[140px] sm:mb-8"
         >
           Team <span className="text-[#F70548]">Leadership</span>
         </motion.h2>

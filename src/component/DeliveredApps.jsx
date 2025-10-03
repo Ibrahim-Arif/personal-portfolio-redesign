@@ -13,7 +13,7 @@ const DeliveredApps = () => {
         duration: 1.2,
         ease: [0.16, 0.84, 0.44, 1],
       }}
-      className="bg-white rounded-3xl px-8 md:px-10 pt-4 w-full max-w-md overflow-hidden"
+      className="bg-white rounded-3xl px-8 md:px-10 pt-4 w-full xs:max-w-sm sm:max-w-md overflow-hidden"
     >
       {/* Title Section */}
       <motion.div
@@ -24,7 +24,7 @@ const DeliveredApps = () => {
           delay: 0.2,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="flex flex-row sm:flex-col"
+        className="flex flex-row sm:flex-col space-x-2 sm:space-x-0"
       >
         <h2 className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-2">
           Delivered {"  "}

@@ -134,7 +134,7 @@ const About = () => {
     <div className="bg-[#F5F5F7] py-8">
       <div className="flex xl:flex-row flex-col max-w-7xl mx-auto px-4">
         {/* About Card - Always visible */}
-        <div className="lg:flex-shrink-0 justify-center items-center flex">
+        <div className="lg:flex-shrink-0 items-center flex">
           <AboutCard />
         </div>
 
@@ -144,7 +144,7 @@ const About = () => {
           <div className="hidden xl:flex flex-col w-full">
             {/* Top Row */}
             <div className="flex items-start justify-between">
-              <div className="pl-4">
+              <div className="md:pl-4">
                 <CareerJourneyCard />
               </div>
               <div>
@@ -164,12 +164,12 @@ const About = () => {
           </div>
 
           {/* Mobile/Tablet View - Below XL - Swiper Carousel */}
-          <div className="sm:hidden pt-12 pb-12">
+          <div className="sm:hidden pt-8 pb-12">
             <Swiper
               modules={[Autoplay, Pagination]}
               spaceBetween={16}
               slidesPerView="auto"
-              centeredSlides={false}
+              centeredSlides={true}
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: true,
@@ -200,18 +200,18 @@ const About = () => {
                   centeredSlides: false,
                 },
               }}
-              className="px-4"
+              className=""
             >
-              <SwiperSlide style={{ width: "auto" }}>
+              <SwiperSlide>
                 <CareerJourneyCard />
               </SwiperSlide>
-              <SwiperSlide style={{ width: "auto" }}>
+              <SwiperSlide>
                 <DeliveredApps />
               </SwiperSlide>
-              <SwiperSlide style={{ width: "auto" }}>
+              <SwiperSlide>
                 <ExpertiseTags />
               </SwiperSlide>
-              <SwiperSlide style={{ width: "auto" }}>
+              <SwiperSlide>
                 <TeamLeadership />
               </SwiperSlide>
             </Swiper>
@@ -220,7 +220,7 @@ const About = () => {
           {/* Custom Swiper Styles */}
           <style jsx global>{`
             .swiper-pagination {
-              bottom: 0 !important;
+              bottom: -20 !important;
             }
             .swiper-pagination-bullet {
               background: #333;
@@ -228,6 +228,10 @@ const About = () => {
             }
             .swiper-pagination-bullet-active {
               opacity: 1;
+            }
+            .swiper-slide {
+              width: 100% !important;
+              height: auto !important;
             }
           `}</style>
         </div>
