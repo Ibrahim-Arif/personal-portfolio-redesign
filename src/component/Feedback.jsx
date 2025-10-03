@@ -58,7 +58,7 @@ const feedbacks = [
 const Feedback = () => {
   return (
     <section
-      className="py-20 bg-gradient-lightgrey mt-12"
+      className="pb-20 bg-gradient-lightgrey mt-20 pt-14"
       style={{ "--gradient-direction": "to bottom" }}
     >
       <div className="container mx-auto px-4 max-w-7xl">

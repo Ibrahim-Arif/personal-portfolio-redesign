@@ -301,6 +301,25 @@ const AwardsCarousel = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="text-left mb-16 px-8 max-w-7xl mx-auto"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mt-24 mb-24"
+        >
+          <h1 className="text-4xl font-SfProDisplay-regular text-custom-black mb-3">
+            <span className="font-SfProDisplay-regular"> Honor & Awards </span>
+          </h1>
+          <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
+        </motion.div>
+      </motion.div>
       <div className="relative">
         {/* Navigation Buttons */}
         {/* <button
