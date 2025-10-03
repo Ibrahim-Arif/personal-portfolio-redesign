@@ -109,13 +109,13 @@ const Feedback = () => {
                       />
                     </div>
                     <div className="flex-grow font-SfProDisplay-regular">
-                      <p className=" text-[#1D1D11] text-base md:text-[22px]">
+                      <p className=" text-[#1D1D11] text-base md:text-xl">
                         {feedback.clientName}
                       </p>
-                      <p className="text-sm md:text-lg text-[#839297]">
+                      <p className="text-sm md:text-base text-[#839297]">
                         {feedback.clientRole}
                       </p>
-                      <p className="text-sm md:text-lg text-[#839297]">
+                      <p className="text-sm md:text-base text-[#839297]">
                         {feedback.clientCountry}
                       </p>
                     </div>

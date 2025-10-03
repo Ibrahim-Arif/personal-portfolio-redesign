@@ -13,7 +13,7 @@ const DeliveredApps = () => {
         duration: 1.2,
         ease: [0.16, 0.84, 0.44, 1],
       }}
-      className="bg-white rounded-3xl px-8 md:px-10 pt-4 w-full xs:max-w-sm sm:max-w-md overflow-hidden"
+      className="bg-white rounded-3xl px-8 lg:px-10 pt-4 w-full xs:max-w-sm md:max-w-[168px] lg:max-w-[224px] xl:max-w-md overflow-hidden"
     >
       {/* Title Section */}
       <motion.div
@@ -26,10 +26,10 @@ const DeliveredApps = () => {
         }}
         className="flex flex-row sm:flex-col space-x-2 sm:space-x-0"
       >
-        <h2 className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-2">
+        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold mb-2">
           Delivered {"  "}
         </h2>
-        <h2 className="text-2xl md:text-[32px] font-SfProDisplay-semibold ">
+        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold ">
           <span className="text-[#F70548]">100+</span> Apps
         </h2>
       </motion.div>
@@ -43,7 +43,7 @@ const DeliveredApps = () => {
           delay: 0.4,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="relative -bottom-5 md:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] sm:h-[300px]"
+        className="relative -bottom-5 md:-bottom-20 lg:-bottom-12 xl:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] md:h-[180px] lg:h-[197px] xl:h-[290px]"
       >
         <Image
           src="/images/phoneMockup.webp"

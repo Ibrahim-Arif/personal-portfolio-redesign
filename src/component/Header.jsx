@@ -25,7 +25,7 @@ export default function Header() {
   };
 
   const navItems = [
-    { id: "achievements", label: "About Me" },
+    { id: "about", label: "About Me" },
     { id: "projects", label: "Projects" },
     { id: "feedback", label: "Testimonials" },
   ];
@@ -38,11 +38,11 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
         <a
           href="#"
-          className="text-xl font-SfProDisplay-bold text-[#F70548]"
+          className="text-base md:text-xl font-SfProDisplay-bold text-[#F70548]"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif
@@ -56,9 +56,9 @@ export default function Header() {
             aria-label="Toggle Menu"
           >
             {isMenuOpen ? (
-              <X className="h-6 w-6" />
+              <X className="w-4 h-4 md:h-6 md:w-6" />
             ) : (
-              <Menu className="h-6 w-6" />
+              <Menu className="w-4 h-4 md:h-6 md:w-6" />
             )}
           </button>
         </div>
@@ -68,7 +68,7 @@ export default function Header() {
           className={`${
             isMenuOpen ? "flex" : "hidden md:flex"
           } flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto 
-          bg-background md:bg-transparent items-center justify-end 
+          bg-white md:bg-transparent items-center justify-end 
           space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 
           shadow-md md:shadow-none`}
         >
@@ -76,7 +76,7 @@ export default function Header() {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`transition-colors duration-200 text-[20px] ${
+                className={`transition-colors duration-200 sm:text-base md:text-[20px] ${
                   activeSection === item.id
                     ? "text-[#F70548] font-semibold" // ✅ active red
                     : "hover:text-[#F70548] text-black"

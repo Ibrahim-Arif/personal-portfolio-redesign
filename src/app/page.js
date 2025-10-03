@@ -14,7 +14,9 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <About />
+      <div id="about">
+        <About />
+      </div>
       <div id="projects">
         <Project />
       </div>

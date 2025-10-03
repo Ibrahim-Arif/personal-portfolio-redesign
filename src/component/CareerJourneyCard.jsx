@@ -64,14 +64,14 @@ const CareerJourneyCard = () => {
         duration: 1,
         ease: [0.16, 0.84, 0.44, 1],
       }}
-      className="bg-white rounded-3xl px-5 py-6 w-full xs:max-w-sm sm:max-w-[500px]"
+      className="bg-white rounded-3xl px-5 py-6 w-full grow"
     >
-      <h2 className="text-2xl md:text-[32px] font-SfProDisplay-semibold mb-8">
+      <h2 className="text-2xl md:text-lg lg:text-2xl font-SfProDisplay-semibold mb-8">
         Career <span className="text-[#F70548]">Journey</span>
       </h2>
 
       {/* Container with fixed height for 3 items */}
-      <div className="relative h-[182px] sm:h-72 overflow-hidden">
+      <div className="relative h-[182px] md:h-[140px] lg:h-[182px] xl:h-72 overflow-hidden">
         {/* Vertical Line */}
         <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-[#2B2B2B]"></div>
 
@@ -89,7 +89,7 @@ const CareerJourneyCard = () => {
 
               {/* Content */}
               <div className="flex-1">
-                <p className="text-base md:text-[21px] font-SfProDisplay-regular leading-relaxed">
+                <p className="text-base md:text-sm lg:text-lg xl:text-[21px] font-SfProDisplay-regular leading-relaxed">
                   <span className="text-[#1D1D11]">{item.position}</span>
                   <span className="text-gradient-gray"> for </span>
                   <span className="text-[#1D1D11] font-SfProDisplay-medium">

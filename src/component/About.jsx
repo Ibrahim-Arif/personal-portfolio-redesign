@@ -131,20 +131,16 @@ import AboutCard from "./AboutCard";
 
 const About = () => {
   return (
-    <div className="bg-[#F5F5F7] py-8">
-      <div className="flex xl:flex-row flex-col max-w-7xl mx-auto px-4">
-        {/* About Card - Always visible */}
+    <div className="bg-[#F5F5F7] pt-12 sm:py-8">
+      <div className="flex md:flex-row flex-col max-w-7xl mx-auto px-4 items-center">
         <div className="lg:flex-shrink-0 items-center flex">
           <AboutCard />
         </div>
 
-        {/* Right Side Content */}
         <div className="flex flex-col w-full">
-          {/* Desktop View - XL and above */}
-          <div className="hidden xl:flex flex-col w-full">
-            {/* Top Row */}
+          <div className="hidden md:flex flex-col w-full">
             <div className="flex items-start justify-between">
-              <div className="md:pl-4">
+              <div className="md:px-4 flex-1">
                 <CareerJourneyCard />
               </div>
               <div>
@@ -157,67 +153,67 @@ const About = () => {
               <div className="pl-4 pt-6">
                 <ExpertiseTags />
               </div>
-              <div className="pl-4 pt-6">
+              <div className="pl-4 pt-6 flex-1">
                 <TeamLeadership />
               </div>
             </div>
           </div>
 
-          {/* Mobile/Tablet View - Below XL - Swiper Carousel */}
-          <div className="sm:hidden pt-8 pb-12">
-            <Swiper
-              modules={[Autoplay, Pagination]}
-              spaceBetween={16}
-              slidesPerView="auto"
-              centeredSlides={true}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: true,
-              }}
-              pagination={{
-                clickable: true,
-                dynamicBullets: true,
-              }}
-              breakpoints={{
-                320: {
-                  slidesPerView: 1,
-                  spaceBetween: 16,
-                  centeredSlides: true,
-                },
-                640: {
-                  slidesPerView: 1.5,
-                  spaceBetween: 20,
-                  centeredSlides: true,
-                },
-                768: {
-                  slidesPerView: 2,
-                  spaceBetween: 24,
-                  centeredSlides: false,
-                },
-                1024: {
-                  slidesPerView: 2.5,
-                  spaceBetween: 24,
-                  centeredSlides: false,
-                },
-              }}
-              className=""
-            >
-              <SwiperSlide>
-                <CareerJourneyCard />
-              </SwiperSlide>
-              <SwiperSlide>
-                <DeliveredApps />
-              </SwiperSlide>
-              <SwiperSlide>
-                <ExpertiseTags />
-              </SwiperSlide>
-              <SwiperSlide>
-                <TeamLeadership />
-              </SwiperSlide>
-            </Swiper>
+          <div className="md:hidden pt-8 pb-12 flex items-center justify-center">
+            <div className="w-full max-w-sm">
+              <Swiper
+                modules={[Autoplay, Pagination]}
+                spaceBetween={16}
+                slidesPerView="auto"
+                centeredSlides={true}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: true,
+                }}
+                pagination={{
+                  clickable: true,
+                  dynamicBullets: true,
+                }}
+                breakpoints={{
+                  320: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                    centeredSlides: true,
+                  },
+                  640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20,
+                    centeredSlides: true,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                    centeredSlides: false,
+                  },
+                  1024: {
+                    slidesPerView: 2.5,
+                    spaceBetween: 24,
+                    centeredSlides: false,
+                  },
+                }}
+                className=""
+              >
+                <SwiperSlide>
+                  <CareerJourneyCard />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <DeliveredApps />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <ExpertiseTags />
+                </SwiperSlide>
+                <SwiperSlide>
+                  <TeamLeadership />
+                </SwiperSlide>
+              </Swiper>
+            </div>
           </div>
 
-          {/* Custom Swiper Styles */}
           <style jsx global>{`
             .swiper-pagination {
               bottom: -20 !important;
