@@ -173,13 +173,244 @@ const awardsData = [
   },
 ];
 
-const AwardsCarousel = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
+// const AwardsCarousel = () => {
+//   const [currentIndex, setCurrentIndex] = useState(0);
+//   const [isHovered, setIsHovered] = useState(false);
+//   const [isMobile, setIsMobile] = useState(false);
+//   const [isTablet, setIsTablet] = useState(false);
+//   const controls = useAnimation();
+//   const containerRef = useRef(null);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth < 768);
+//       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1280);
+//     };
+
+//     handleResize();
+//     window.addEventListener("resize", handleResize);
+//     return () => window.removeEventListener("resize", handleResize);
+//   }, []);
+
+//   const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
+//   const maxIndex = Math.max(0, awardsData.length - slidesToShow);
+
+//   const next = () => {
+//     setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+//   };
+
+//   const prev = () => {
+//     setCurrentIndex((prev) => Math.max(prev - 1, 0));
+//   };
+
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+//     }, 4000);
+
+//     return () => clearInterval(interval);
+//   }, [maxIndex]);
+
+//   // const cardWidth = isMobile ? 100 : isTablet ? 50 : 33.333;
+//   const gap = isMobile ? 5 : 2;
+
+//   // Triple the data for seamless looping
+//   const extendedData = [...awardsData, ...awardsData, ...awardsData];
+
+//   // Animation setup - move one card at a time continuously
+//   // useEffect(() => {
+//   //   if (isHovered) return;
+
+//   //   const cardWidth = 100 / slidesToShow;
+//   //   const totalCards = awardsData.length;
+//   //   let currentStep = 0;
+
+//   //   const animate = async () => {
+//   //     while (!isHovered) {
+//   //       currentStep++;
+
+//   //       await controls.start({
+//   //         x: `-${cardWidth * currentStep}%`,
+//   //         transition: {
+//   //           duration: 2,
+//   //           ease: "easeInOut",
+//   //         },
+//   //       });
+
+//   //       await new Promise((resolve) => setTimeout(resolve, 1500)); // 1.5 second pause
+
+//   //       if (currentStep >= totalCards) {
+//   //         moved;
+//   //         controls.set({ x: "0%" });
+//   //         currentStep = 0;
+//   //       }
+//   //     }
+//   //   };
+
+//   //   animate();
+
+//   //   return () => controls.stop();
+//   // }, [controls, slidesToShow, isHovered, awardsData.length]);
+
+//   // Animation setup - move one card at a time continuously
+//   useEffect(() => {
+//     if (isHovered) return;
+
+//     const cardWidth = 100 / slidesToShow;
+//     const totalCards = awardsData.length;
+//     let currentStep = 0;
+
+//     const animate = async () => {
+//       while (!isHovered) {
+//         currentStep++;
+
+//         await controls.start({
+//           x: `-${cardWidth * currentStep}%`,
+//           transition: {
+//             duration: 2, // 2 seconds per card (slow speed)
+//             ease: "easeInOut",
+//           },
+//         });
+
+//         // Pause between card movements
+//         await new Promise((resolve) => setTimeout(resolve, 1500)); // 1.5 second pause
+
+//         // When we've moved through one full set, reset position seamlessly
+//         if (currentStep >= totalCards) {
+//           controls.set({ x: "0%" });
+//           currentStep = 0;
+//         }
+//       }
+//     };
+
+//     animate();
+
+//     return () => controls.stop();
+//   }, [controls, slidesToShow, isHovered, awardsData.length]);
+
+//   const handleHoverStart = () => {
+//     setIsHovered(true);
+//     controls.stop();
+//   };
+
+//   const handleHoverEnd = () => {
+//     setIsHovered(false);
+//   };
+
+//   const cardWidth = 100 / slidesToShow;
+
+//   return (
+//     <div className="w-full max-w-7xl mx-auto">
+//       <motion.div
+//         initial={{ opacity: 0, y: 30 }}
+//         whileInView={{ opacity: 1, y: 0 }}
+//         viewport={{ once: true, margin: "-50px" }}
+//         transition={{ duration: 0.6, ease: "easeOut" }}
+//         className="text-left mb-16 px-8 max-w-7xl mx-auto"
+//       >
+//         <motion.div
+//           initial={{ opacity: 0, y: -20 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           transition={{ duration: 0.6 }}
+//           className="text-center mt-24 mb-24"
+//         >
+//           <h1 className="text-4xl font-SfProDisplay-regular text-custom-black mb-3">
+//             <span className="font-SfProDisplay-regular"> Honor & Awards </span>
+//           </h1>
+//           <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
+//         </motion.div>
+//       </motion.div>
+//       <div className="relative">
+//         {/* Navigation Buttons */}
+//         {/* <button
+//           onClick={prev}
+//           disabled={currentIndex === 0}
+//           className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg transition-all ${
+//             currentIndex === 0
+//               ? "opacity-50 cursor-not-allowed"
+//               : "hover:bg-gray-100"
+//           }`}
+//           aria-label="Previous slide"
+//         >
+//           <ChevronLeft className="w-6 h-6" />
+//         </button>
+
+//         <button
+//           onClick={next}
+//           disabled={currentIndex >= maxIndex}
+//           className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg transition-all ${
+//             currentIndex >= maxIndex
+//               ? "opacity-50 cursor-not-allowed"
+//               : "hover:bg-gray-100"
+//           }`}
+//           aria-label="Next slide"
+//         >
+//           <ChevronRight className="w-6 h-6" />
+//         </button> */}
+
+//         {/* Carousel Container */}
+//         <div
+//           className="overflow-hidden"
+//           onMouseEnter={handleHoverStart}
+//           onMouseLeave={handleHoverEnd}
+//         >
+//           <motion.div
+//             ref={containerRef}
+//             className="flex"
+//             animate={controls}
+//             style={{ gap: `${gap}px` }}
+//           >
+//             {extendedData.map((award, index) => (
+//               <motion.div
+//                 key={award.id}
+//                 style={{
+//                   minWidth: `calc(${cardWidth}% - ${
+//                     (gap * (slidesToShow - 1)) / slidesToShow
+//                   }px)`,
+//                 }}
+//                 initial={{ opacity: 0, scale: 0.9 }}
+//                 animate={{ opacity: 1, scale: 1 }}
+//                 transition={{ delay: index * 0.1 }}
+//                 className="p-4 "
+//               >
+//                 <AwardCard award={award} />
+//               </motion.div>
+//             ))}
+//           </motion.div>
+//         </div>
+
+//         {/* Pagination Dots */}
+//         {/* <div className="flex justify-center gap-2 mt-4">
+//           {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+//             <button
+//               key={index}
+//               onClick={() => setCurrentIndex(index)}
+//               className={`transition-all ${
+//                 index === currentIndex
+//                   ? "w-6 h-2 bg-gray-800 rounded-full"
+//                   : "w-2 h-2 bg-gray-300 rounded-full hover:bg-gray-400"
+//               }`}
+//               aria-label={`Go to slide ${index + 1}`}
+//             />
+//           ))}
+//         </div> */}
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default AwardsCarousel;
+
+const HonorsAwards = () => {
+  const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
-  const controls = useAnimation();
-  const containerRef = useRef(null);
+  const scrollRef = useRef(null);
+  const animationRef = useRef(null);
+  const positionRef = useRef(0);
+  const touchStartRef = useRef(0);
+  const touchEndRef = useRef(0);
+  const isDraggingRef = useRef(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -193,210 +424,130 @@ const AwardsCarousel = () => {
   }, []);
 
   const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
-  const maxIndex = Math.max(0, awardsData.length - slidesToShow);
 
-  const next = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
-  };
-
-  const prev = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [maxIndex]);
-
-  // const cardWidth = isMobile ? 100 : isTablet ? 50 : 33.333;
-  const gap = isMobile ? 5 : 2;
-
-  // Triple the data for seamless looping
+  // Triple the data for seamless infinite scroll
   const extendedData = [...awardsData, ...awardsData, ...awardsData];
 
-  // Animation setup - move one card at a time continuously
-  // useEffect(() => {
-  //   if (isHovered) return;
-
-  //   const cardWidth = 100 / slidesToShow;
-  //   const totalCards = awardsData.length;
-  //   let currentStep = 0;
-
-  //   const animate = async () => {
-  //     while (!isHovered) {
-  //       currentStep++;
-
-  //       await controls.start({
-  //         x: `-${cardWidth * currentStep}%`,
-  //         transition: {
-  //           duration: 2,
-  //           ease: "easeInOut",
-  //         },
-  //       });
-
-  //       await new Promise((resolve) => setTimeout(resolve, 1500)); // 1.5 second pause
-
-  //       if (currentStep >= totalCards) {
-  //         moved;
-  //         controls.set({ x: "0%" });
-  //         currentStep = 0;
-  //       }
-  //     }
-  //   };
-
-  //   animate();
-
-  //   return () => controls.stop();
-  // }, [controls, slidesToShow, isHovered, awardsData.length]);
-
-  // Animation setup - move one card at a time continuously
   useEffect(() => {
-    if (isHovered) return;
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
 
-    const cardWidth = 100 / slidesToShow;
-    const totalCards = awardsData.length;
-    let currentStep = 0;
+    const scroll = () => {
+      if (!isPaused) {
+        positionRef.current += 0.5; // Speed of scroll (pixels per frame)
 
-    const animate = async () => {
-      while (!isHovered) {
-        currentStep++;
+        const cardWidth = scrollContainer.scrollWidth / 3; // Width of one set of cards
 
-        await controls.start({
-          x: `-${cardWidth * currentStep}%`,
-          transition: {
-            duration: 2, // 2 seconds per card (slow speed)
-            ease: "easeInOut",
-          },
-        });
-
-        // Pause between card movements
-        await new Promise((resolve) => setTimeout(resolve, 1500)); // 1.5 second pause
-
-        // When we've moved through one full set, reset position seamlessly
-        if (currentStep >= totalCards) {
-          controls.set({ x: "0%" });
-          currentStep = 0;
+        // Reset position when we've scrolled through one complete set
+        if (positionRef.current >= cardWidth) {
+          positionRef.current = 0;
         }
+
+        scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
       }
+
+      animationRef.current = requestAnimationFrame(scroll);
     };
 
-    animate();
+    animationRef.current = requestAnimationFrame(scroll);
 
-    return () => controls.stop();
-  }, [controls, slidesToShow, isHovered, awardsData.length]);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [isPaused]);
 
-  const handleHoverStart = () => {
-    setIsHovered(true);
-    controls.stop();
+  const handleMouseEnter = () => {
+    setIsPaused(true);
   };
 
-  const handleHoverEnd = () => {
-    setIsHovered(false);
+  const handleMouseLeave = () => {
+    setIsPaused(false);
   };
 
-  const cardWidth = 100 / slidesToShow;
+  const handleTouchStart = (e) => {
+    touchStartRef.current = e.touches[0].clientX;
+    isDraggingRef.current = true;
+    setIsPaused(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDraggingRef.current) return;
+    touchEndRef.current = e.touches[0].clientX;
+    const diff = touchStartRef.current - touchEndRef.current;
+
+    const scrollContainer = scrollRef.current;
+    if (scrollContainer) {
+      const cardWidth = scrollContainer.scrollWidth / 3;
+      positionRef.current = Math.max(
+        0,
+        Math.min(positionRef.current + diff, cardWidth - 1)
+      );
+      scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
+    }
+
+    touchStartRef.current = touchEndRef.current;
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+    setIsPaused(false);
+  };
+
+  const gap = isMobile ? 16 : 16;
+  const cardWidth = `calc(${100 / slidesToShow}% - ${
+    (gap * (slidesToShow - 1)) / slidesToShow
+  }px)`;
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full max-w-7xl mx-auto py-12">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="text-left mb-16 px-8 max-w-7xl mx-auto"
+        className="text-center mb-16 px-8"
       >
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mt-24 mb-24"
-        >
-          <h1 className="text-4xl font-SfProDisplay-regular text-custom-black mb-3">
-            <span className="font-SfProDisplay-regular"> Honor & Awards </span>
-          </h1>
-          <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
-        </motion.div>
+        <h1 className="text-4xl font-bold text-gray-900 mb-3">
+          Honor & Awards
+        </h1>
+        <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
       </motion.div>
-      <div className="relative">
-        {/* Navigation Buttons */}
-        {/* <button
-          onClick={prev}
-          disabled={currentIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg transition-all ${
-            currentIndex === 0
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-gray-100"
-          }`}
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
 
-        <button
-          onClick={next}
-          disabled={currentIndex >= maxIndex}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 bg-white rounded-full p-3 shadow-lg transition-all ${
-            currentIndex >= maxIndex
-              ? "opacity-50 cursor-not-allowed"
-              : "hover:bg-gray-100"
-          }`}
-          aria-label="Next slide"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button> */}
-
-        {/* Carousel Container */}
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <div
-          className="overflow-hidden"
-          onMouseEnter={handleHoverStart}
-          onMouseLeave={handleHoverEnd}
+          ref={scrollRef}
+          className="flex"
+          style={{
+            gap: `${gap}px`,
+            willChange: "transform",
+            transition: isPaused ? "transform 0.3s ease-out" : "none",
+          }}
         >
-          <motion.div
-            ref={containerRef}
-            className="flex"
-            animate={controls}
-            style={{ gap: `${gap}px` }}
-          >
-            {extendedData.map((award, index) => (
-              <motion.div
-                key={award.id}
-                style={{
-                  minWidth: `calc(${cardWidth}% - ${
-                    (gap * (slidesToShow - 1)) / slidesToShow
-                  }px)`,
-                }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: index * 0.1 }}
-                className="p-4 "
-              >
-                <AwardCard award={award} />
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Pagination Dots */}
-        {/* <div className="flex justify-center gap-2 mt-4">
-          {Array.from({ length: maxIndex + 1 }).map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={`transition-all ${
-                index === currentIndex
-                  ? "w-6 h-2 bg-gray-800 rounded-full"
-                  : "w-2 h-2 bg-gray-300 rounded-full hover:bg-gray-400"
-              }`}
-              aria-label={`Go to slide ${index + 1}`}
-            />
+          {extendedData.map((award, index) => (
+            <div
+              key={`${award.id}-${index}`}
+              style={{
+                minWidth: cardWidth,
+                maxWidth: cardWidth,
+              }}
+              className="flex-shrink-0 py-8"
+            >
+              <AwardCard award={award} />
+            </div>
           ))}
-        </div> */}
+        </div>
       </div>
     </div>
   );
 };
 
-export default AwardsCarousel;
+export default HonorsAwards;
