@@ -69,7 +69,7 @@ const ProjectCard = ({ project, index }) => {
 
       {/* Content with margin between image and text */}
       <div className="p-1 mt-4">
-        <h3 className="text-[28px] font-SfProDisplay-regular text-[#1D1D11] mb-2">
+        <h3 className="text-[28px] font-SfProDisplay-regular text-secondary mb-2">
           {project.title}
         </h3>
         <p className="text-gray-500 text-base md:text-xl leading-relaxed font-SfProDisplay-regular">
@@ -80,43 +80,37 @@ const ProjectCard = ({ project, index }) => {
   );
 };
 
-// Auto-scrolling Carousel Component
 const Project = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const intervalRef = useRef(null);
 
-  // Triple duplicate for smoother infinite scroll
   const duplicatedProjects = [
     ...projectsData,
     ...projectsData,
     ...projectsData,
   ];
 
-  const cardWidth = 312; // card width (288) + margin (24)
+  const cardWidth = 312;
   const totalWidth = duplicatedProjects.length * cardWidth;
   const singleSetWidth = projectsData.length * cardWidth;
 
   // Motion values for position tracking
   const x = useMotionValue(0);
 
-  // Continuous auto-scroll function that respects hover and drag states
   const autoScroll = () => {
     intervalRef.current = setInterval(() => {
-      // Only move if not hovered and not dragging
       if (!isHovered && !isDragging) {
         const currentX = x.get();
-        const newX = currentX - 1; // Move 1px left every interval (slower)
+        const newX = currentX - 1;
 
-        // Seamless infinite loop - reset when we've moved one full set
         if (newX <= -singleSetWidth) {
-          x.set(newX + singleSetWidth); // Jump back smoothly
+          x.set(newX + singleSetWidth);
         } else {
           x.set(newX);
         }
       }
-      // If hovered or dragging, the interval continues but doesn't move the carousel
-    }, 16); // ~60fps
+    }, 16);
   };
 
   // Start auto-scroll
@@ -145,20 +139,17 @@ const Project = () => {
     setIsHovered(false);
   };
 
-  // Handle drag events
   const handleDragStart = () => {
     setIsDragging(true);
   };
 
   const handleDragEnd = () => {
     setIsDragging(false);
-    // Don't reset position - let it continue from wherever user left it
   };
 
-  // Start initial auto-scroll and keep it running
   useEffect(() => {
     const timer = setTimeout(() => {
-      autoScroll(); // Start once and never stop the interval
+      autoScroll();
     }, 1000);
 
     return () => {
@@ -167,7 +158,6 @@ const Project = () => {
     };
   }, []);
 
-  // Cleanup on unmount
   useEffect(() => {
     return () => {
       stopAutoScroll();
@@ -197,7 +187,6 @@ const Project = () => {
         </motion.div>
       </motion.div>
 
-      {/* Carousel Container */}
       <div
         className="relative overflow-hidden  mb-20"
         onMouseEnter={handleMouseEnter}

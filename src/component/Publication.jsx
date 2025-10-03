@@ -48,7 +48,7 @@ const SmartGuard = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="text-base sm:text-[22px] text-[#839297] leading-relaxed max-w-xl font-SfProDisplay-medium text-center lg:text-left"
+              className="text-base sm:text-[22px] text-grayC leading-relaxed max-w-xl font-SfProDisplay-medium text-center lg:text-left"
             >
               Privacy-Preserving Edge-Based Video Surveillance Framework for
               Suspicious Activity Detection.
@@ -64,7 +64,7 @@ const SmartGuard = () => {
             >
               {/* Collaborators List */}
               <div className="flex flex-col flex-wrap gap-6 bg-[#F8FAFB] p-4 rounded-2xl max-w-xl ">
-                <div className="flex items-center gap-2 text-[#2B2B2B]">
+                <div className="flex items-center gap-2 text-primaryBlack">
                   <Users className="w-5 h-5" />
                   <span className="text-2xl font-SfProDisplay-medium">
                     Collaborators
@@ -90,10 +90,10 @@ const SmartGuard = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-lg md:text-[20px] font-SfProDisplay-medium text-[#2B2B2B] text-left">
+                      <p className="text-lg md:text-[20px] font-SfProDisplay-medium text-primaryBlack text-left">
                         Bilal Naeem
                       </p>
-                      <p className="text-base md:text-lg font-SfProDisplay-regular text-[#839297] text-left">
+                      <p className="text-base md:text-lg font-SfProDisplay-regular text-grayC text-left">
                         Software Engineer
                       </p>
                     </div>
@@ -118,10 +118,10 @@ const SmartGuard = () => {
                       />
                     </div>
                     <div>
-                      <p className="text-lg md:text-[20px] font-SfProDisplay-medium text-[#2B2B2B] text-left">
+                      <p className="text-lg md:text-[20px] font-SfProDisplay-medium text-primaryBlack text-left">
                         Dr. Allah Bux Sargana
                       </p>
-                      <p className="text-base md:text-lg font-SfProDisplay-regular text-[#839297] text-left">
+                      <p className="text-base md:text-lg font-SfProDisplay-regular text-grayC text-left">
                         Machine Learning
                       </p>
                     </div>
@@ -141,7 +141,7 @@ const SmartGuard = () => {
                 transition: { duration: 0.2 },
               }}
               whileTap={{ scale: 0.95 }}
-              className="bg-[#F70548] hover:bg-red-700 cursor-pointer text-white font-medium px-6 py-3 rounded-full text-sm transition-colors duration-200 shadow-lg flex items-center gap-2"
+              className="bg-button hover:bg-red-700 cursor-pointer text-white font-medium px-6 py-3 rounded-full text-sm transition-colors duration-200 shadow-lg flex items-center gap-2"
             >
               <Link className="w-4 h-4" />
               Explore Dataset

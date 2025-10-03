@@ -17,7 +17,6 @@ const AboutCard = () => {
         }}
         className="bg-white rounded-3xl overflow-hidden w-full max-w-sm md:max-w-[282px] lg:max-w-[326px] xl:max-w-[412px]"
       >
-        {/* Text Content */}
         <div className="p-6 md:p-4 lg:p-8 pb-4 md:pb-6">
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
@@ -43,7 +42,7 @@ const AboutCard = () => {
               delay: 0.4,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold text-[#F70548] mb-4 md:mb-6"
+            className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold text-button mb-4 md:mb-6"
           >
             & Leading
           </motion.h1>
@@ -64,7 +63,6 @@ const AboutCard = () => {
           </motion.p>
         </div>
 
-        {/* Image Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, y: 0 }}

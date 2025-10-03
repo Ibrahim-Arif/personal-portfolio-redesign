@@ -31,7 +31,7 @@ export default function Hero() {
         className="absolute top-0 right-0 bg-gradient-red w-1/3 h-1/3 opacity-40 border-radius-50% blur-3xl"
         style={{ "--gradient-direction": "to bottom left" }}
       ></div>
-      {/* Single SVG Background - Center to Edges Animation */}
+
       <motion.img
         src="/images/hero.svg"
         alt="Background Line"
@@ -71,10 +71,9 @@ export default function Hero() {
           <span className="text-[28px] md:text-[64px] font-SfProDisplay-medium gap-3 text-black">
             Ibrahim Arif
           </span>
-          <span className="text-pink-600">.</span>
+          <span className="text-button">.</span>
         </motion.h1>
 
-        {/* Subtitle */}
         <motion.p
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -82,17 +81,16 @@ export default function Hero() {
           className="mt-3 text-xl font-SfProDisplay-regular md:text-[64px] "
         >
           <span className="text-gradient-gray">founder of </span>{" "}
-          <span className=" text-[#F70548] text-[28px] md:text-[64px]">
+          <span className=" text-button text-[28px] md:text-[64px]">
             INFILP
           </span>
         </motion.p>
 
-        {/* Button */}
         <motion.button
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-          className="mt-6 w-[122px] h-[43px] bg-[#F70548] text-base text-white font-SfProDisplay-medium rounded-full shadow-lg hover:bg-[#F70548]/70  cursor-pointer"
+          className="mt-6 w-[122px] h-[43px] bg-button text-base text-white font-SfProDisplay-medium rounded-full shadow-lg hover:bg-[#F70548]/70  cursor-pointer"
         >
           My Resume
         </motion.button>

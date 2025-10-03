@@ -27,6 +27,16 @@
   }
 }
 
+/* global.css */
+:root {
+  --color-button: #f70548;
+  --brand-white: #f5f5f7;
+  --primary-black: #2b2b2b;
+  --secondary-black: #1d1d11;
+  --tertiary-black: #020817;
+  --secondary-gray: #839297;
+}
+
 @layer utilities {
   /* Red Gradient */
   .bg-gradient-red {
@@ -105,5 +115,33 @@
     -webkit-text-fill-color: transparent;
     background-clip: text; /* For Firefox */
     color: transparent;
+  }
+
+  .text-button {
+    color: var(--color-button);
+  }
+  .text-offwhite {
+    color: var(--brand-white);
+  }
+  .text-primaryBlack {
+    color: var(--primary-black);
+  }
+  .text-secondary {
+    color: var(--secondary-black);
+  }
+  .text-tertiary {
+    color: var(--tertiary-black);
+  }
+  .text-grayC {
+    color: var(--secondary-gray);
+  }
+  .bg-button {
+    background-color: var(--color-button);
+  }
+  .bg-offwhite {
+    background-color: var(--brand-white);
+  }
+  .bg-primaryBlack {
+    background-color: var(--primary-black);
   }
 }

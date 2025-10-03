@@ -10,7 +10,7 @@ const CTA = ({ title, buttonText }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="w-full bg-[#F5F5F7] px-4 sm:px-6 md:px-8 py-4 max-w-6xl mx-auto rounded-3xl"
+      className="w-full bg-offwhite px-4 sm:px-6 md:px-8 py-4 max-w-6xl mx-auto rounded-3xl"
     >
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
         {/* Text */}
@@ -19,7 +19,7 @@ const CTA = ({ title, buttonText }) => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-          className="text-xl sm:text-2xl md:text-[28px] font-SfProDisplay-regular text-[#1D1D11] text-center sm:text-left"
+          className="text-xl sm:text-2xl md:text-[28px] font-SfProDisplay-regular text-secondary text-center sm:text-left"
         >
           {title}
         </motion.h2>
@@ -35,7 +35,7 @@ const CTA = ({ title, buttonText }) => {
             transition: { duration: 0.2, ease: "easeOut" },
           }}
           whileTap={{ scale: 0.95 }}
-          className="bg-[#F70548] text-white font-medium px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base transition-colors duration-200 shadow-lg whitespace-nowrap cursor-pointer"
+          className="bg-button text-white font-medium px-8 sm:px-10 py-3 sm:py-4 rounded-full text-sm sm:text-base transition-colors duration-200 shadow-lg whitespace-nowrap cursor-pointer"
         >
           {buttonText}
         </motion.button>

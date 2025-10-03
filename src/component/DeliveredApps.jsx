@@ -5,10 +5,11 @@ import Image from "next/image";
 
 const DeliveredApps = () => {
   return (
-    // <div className="">
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{
         duration: 1.2,
         ease: [0.16, 0.84, 0.44, 1],
@@ -19,6 +20,8 @@ const DeliveredApps = () => {
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{
           duration: 0.8,
           delay: 0.2,
@@ -30,14 +33,15 @@ const DeliveredApps = () => {
           Delivered {"  "}
         </h2>
         <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold ">
-          <span className="text-[#F70548]">100+</span> Apps
+          <span className="text-button">100+</span> Apps
         </h2>
       </motion.div>
 
-      {/* Phone Mockup Image */}
       <motion.div
         initial={{ opacity: 0, y: 20, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{
           duration: 1,
           delay: 0.4,
@@ -55,7 +59,6 @@ const DeliveredApps = () => {
         />
       </motion.div>
     </motion.div>
-    // </div>
   );
 };
 

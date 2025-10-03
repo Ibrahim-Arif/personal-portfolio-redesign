@@ -99,14 +99,13 @@ const BuildBanner = ({
 
       {/* Layer 1 - Front layer (main component) */}
       <motion.div
-        className="relative bg-gradient-to-r bg-[#F70548] rounded-tl-2xl rounded-br-2xl px-6 py-8 md:px-12 md:py-12 flex flex-col items-center justify-center text-center shadow-xl overflow-hidden"
+        className="relative bg-gradient-to-r bg-button rounded-tl-2xl rounded-br-2xl px-6 py-8 md:px-12 md:py-12 flex flex-col items-center justify-center text-center shadow-xl overflow-hidden"
         variants={hoverVariants}
       >
         <motion.div className="absolute -top-10 -right-10 w-28 h-28 md:w-36 md:h-36 border-8 border-[#FEB3B1] border-opacity-20 rounded-full" />
         <motion.div className="absolute -bottom-16 -left-16 w-32 h-32 md:w-40 md:h-40 border-8 border-[#FEB3B1] border-opacity-15 rounded-full" />
-        {/* Content */}
+
         <div className="relative z-10 space-y-4">
-          {/* Top text */}
           <motion.p
             className="text-white text-[15px] md:text-[28px] font-SfProDisplay-regular opacity-90"
             initial={{ opacity: 0, y: 20 }}
@@ -116,7 +115,6 @@ const BuildBanner = ({
             {topText}
           </motion.p>
 
-          {/* Main text */}
           <motion.h2
             className="text-white text-[21px] md:text-4xl lg:text-[58px] font-SfProDisplay-bold leading-tight"
             initial={{ opacity: 0, y: 20 }}
@@ -127,7 +125,6 @@ const BuildBanner = ({
             <span className="font-SfProDisplay-regular">something great?</span>
           </motion.h2>
 
-          {/* Button */}
           <motion.div
             className="pt-4"
             variants={buttonHoverVariants}
@@ -143,8 +140,6 @@ const BuildBanner = ({
             </button>
           </motion.div>
         </div>
-
-        {/* <div className="absolute inset-0 bg-gradient-to-t from-red-700 to-transparent opacity-20 rounded-2xl" /> */}
       </motion.div>
     </motion.div>
   );

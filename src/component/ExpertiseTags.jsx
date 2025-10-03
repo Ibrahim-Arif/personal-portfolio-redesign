@@ -17,6 +17,8 @@ const ExpertiseTags = () => {
       <motion.div
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
         transition={{
           duration: 1,
           ease: [0.16, 0.84, 0.44, 1],
@@ -27,6 +29,8 @@ const ExpertiseTags = () => {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{
             duration: 0.8,
             delay: 0.2,
@@ -34,10 +38,9 @@ const ExpertiseTags = () => {
           }}
           className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-medium mb-[132px] xs:mb-[124px] md:mb-6 lg:mb-12 xl:mb-16"
         >
-          Diverse <span className="text-[#F70548]">Expertise</span>
+          Diverse <span className="text-button">Expertise</span>
         </motion.h2>
 
-        {/* Tags Container */}
         <div className="flex flex-wrap gap-3">
           {tags.map((tag, index) => (
             <motion.div
@@ -59,7 +62,7 @@ const ExpertiseTags = () => {
                   className="object-contain"
                 />
               </div>
-              <span className="text-[#839297] font-SfProDisplay-regular text-base xs:text-lg md:text-[10px] lg:text-sm xl:text-lg">
+              <span className="text-grayC font-SfProDisplay-regular text-base xs:text-lg md:text-[10px] lg:text-sm xl:text-lg">
                 {tag.label}
               </span>
             </motion.div>

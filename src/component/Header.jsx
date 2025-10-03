@@ -19,7 +19,7 @@ export default function Header() {
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(sectionId); // ✅ highlight the clicked section
+      setActiveSection(sectionId);
       setIsMenuOpen(false);
     }
   };
@@ -39,16 +39,14 @@ export default function Header() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        {/* Logo */}
         <a
           href="#"
-          className="text-base md:text-xl font-SfProDisplay-bold text-[#F70548]"
+          className="text-base md:text-xl font-SfProDisplay-bold text-button"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif
         </a>
 
-        {/* Mobile Menu Toggle */}
         <div className="flex items-center md:hidden">
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -63,7 +61,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Nav Links */}
         <ul
           className={`${
             isMenuOpen ? "flex" : "hidden md:flex"
@@ -78,8 +75,8 @@ export default function Header() {
                 href={`#${item.id}`}
                 className={`transition-colors duration-200 sm:text-base md:text-[20px] ${
                   activeSection === item.id
-                    ? "text-[#F70548] font-semibold" // ✅ active red
-                    : "hover:text-[#F70548] text-black"
+                    ? "text-button font-SfProDisplay-semibold"
+                    : "hover:text-button text-black"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();

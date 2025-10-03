@@ -60,6 +60,8 @@ const CareerJourneyCard = () => {
     <motion.div
       initial={{ opacity: 0, y: -30 }}
       animate={{ opacity: 1, y: 0 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{
         duration: 1,
         ease: [0.16, 0.84, 0.44, 1],
@@ -67,15 +69,12 @@ const CareerJourneyCard = () => {
       className="bg-white rounded-3xl px-5 py-6 w-full grow"
     >
       <h2 className="text-2xl md:text-lg lg:text-2xl font-SfProDisplay-semibold mb-8">
-        Career <span className="text-[#F70548]">Journey</span>
+        Career <span className="text-button">Journey</span>
       </h2>
 
-      {/* Container with fixed height for 3 items */}
       <div className="relative h-[182px] md:h-[140px] lg:h-[182px] xl:h-72 overflow-hidden">
-        {/* Vertical Line */}
-        <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-[#2B2B2B]"></div>
+        <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-primaryBlack"></div>
 
-        {/* Career Items - Animated Container */}
         <motion.div
           className=""
           style={{
@@ -84,15 +83,13 @@ const CareerJourneyCard = () => {
         >
           {extendedData.map((item, index) => (
             <div key={index} className="relative pl-9 flex items-start h-20">
-              {/* Pink Dot */}
-              <div className="absolute left-[4.5px] top-2 w-4 h-4 bg-[#F70548] rounded-full z-10 ring-4 ring-[#EFEFEF]"></div>
+              <div className="absolute left-[4.5px] top-2 w-4 h-4 bg-button rounded-full z-10 ring-4 ring-[#EFEFEF]"></div>
 
-              {/* Content */}
               <div className="flex-1">
                 <p className="text-base md:text-sm lg:text-lg xl:text-[21px] font-SfProDisplay-regular leading-relaxed">
-                  <span className="text-[#1D1D11]">{item.position}</span>
+                  <span className="text-secondary">{item.position}</span>
                   <span className="text-gradient-gray"> for </span>
-                  <span className="text-[#1D1D11] font-SfProDisplay-medium">
+                  <span className="text-secondary font-SfProDisplay-medium">
                     {item.company}
                   </span>
                   <span className="text-gradient-gray"> - {item.year}</span>

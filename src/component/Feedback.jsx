@@ -94,7 +94,7 @@ const Feedback = () => {
             >
               <div className="flex flex-col justify-between px-5 py-4 h-full">
                 <div className="flex flex-col justify-between h-full">
-                  <blockquote className="text-base md:text-xl italic mb-4 text-[#020817]">
+                  <blockquote className="text-base md:text-xl italic mb-4 text-tertiary">
                     "{feedback.text}"
                   </blockquote>
 
@@ -103,30 +103,23 @@ const Feedback = () => {
                       <Image
                         src={feedback.clientImage}
                         alt={feedback.clientName}
-                        width={64} // same as md:w-16
-                        height={64} // same as md:h-16
+                        width={64}
+                        height={64}
                         className="h-12 w-12 md:w-16 md:h-16 rounded-full object-cover"
                       />
                     </div>
                     <div className="flex-grow font-SfProDisplay-regular">
-                      <p className=" text-[#1D1D11] text-base md:text-xl">
+                      <p className="text-secondary text-base md:text-xl">
                         {feedback.clientName}
                       </p>
-                      <p className="text-sm md:text-base text-[#839297]">
+                      <p className="text-sm md:text-base text-grayC">
                         {feedback.clientRole}
                       </p>
-                      <p className="text-sm md:text-base text-[#839297]">
+                      <p className="text-sm md:text-base text-grayC">
                         {feedback.clientCountry}
                       </p>
                     </div>
-                    {/* <a
-                      href={feedback.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 bg-[#F0F0F0] rounded-full transition-colors"
-                    >
-                      <Linkedin className="h-5 w-5 text-black" />
-                    </a> */}
+
                     <motion.a
                       href={feedback.linkedin}
                       target="_blank"
