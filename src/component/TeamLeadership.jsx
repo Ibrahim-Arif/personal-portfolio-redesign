@@ -27,7 +27,7 @@ const TeamLeadership = () => {
             delay: 0.2,
             ease: [0.16, 0.84, 0.44, 1],
           }}
-          className="text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold mb-[108px] xs:mb-[140px] sm:mb-8"
+          className="text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold mb-[108px] xs:mb-[140px] sm:mb-8 xl:mb-10"
         >
           Team <span className="text-button">Leadership</span>
         </motion.h2>

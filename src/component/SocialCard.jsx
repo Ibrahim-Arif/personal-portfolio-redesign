@@ -36,7 +36,7 @@ const SocialCard = ({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={handleClick}
-      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-52 cursor-pointer shadow-lg overflow-hidden`}
+      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-52 md:w-44 cursor-pointer shadow-lg overflow-hidden`}
     >
       <div className="flex justify-start">
         <motion.div

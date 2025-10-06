@@ -10,12 +10,41 @@ export default function Header() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+
+      const sections = ["top", "about", "projects", "feedback"];
+      const scrollPosition = window.scrollY + 100;
+
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const sectionTop = section.offsetTop;
+          const sectionBottom = sectionTop + section.offsetHeight;
+
+          if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+            setActiveSection(sectionId);
+            break;
+          }
+        }
+      }
+
+      if (window.scrollY < 100) {
+        setActiveSection("top");
+      }
     };
+
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = (sectionId) => {
+    if (sectionId === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setActiveSection("top");
+      setIsMenuOpen(false);
+      return;
+    }
+
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
@@ -35,10 +64,10 @@ export default function Header() {
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-sm shadow-md"
-          : "bg-transparent"
+          : "bg-background/80 backdrop-blur-sm shadow-md"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="max-w-7xl mx-auto px-4  py-4 flex justify-between items-center">
         <a
           href="#"
           className="text-base md:text-xl font-SfProDisplay-bold text-button"
@@ -64,9 +93,9 @@ export default function Header() {
         <ul
           className={`${
             isMenuOpen ? "flex" : "hidden md:flex"
-          } flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto 
-          bg-white md:bg-transparent items-center justify-end 
-          space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0 
+          } flex-col md:flex-row absolute md:relative top-full left-0 right-0 md:top-auto
+          bg-white md:bg-transparent items-center justify-end
+          space-y-4 md:space-y-0 md:space-x-4 p-4 md:p-0
           shadow-md md:shadow-none`}
         >
           {navItems.map((item) => (
@@ -75,8 +104,8 @@ export default function Header() {
                 href={`#${item.id}`}
                 className={`transition-colors duration-200 sm:text-base md:text-[20px] ${
                   activeSection === item.id
-                    ? "text-button font-SfProDisplay-semibold"
-                    : "hover:text-button text-black"
+                    ? "text-red-500 font-SfProDisplay-semibold"
+                    : "hover:text-red-500 text-black"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();

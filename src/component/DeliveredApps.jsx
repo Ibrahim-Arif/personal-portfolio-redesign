@@ -47,7 +47,7 @@ const DeliveredApps = () => {
           delay: 0.4,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="relative -bottom-5 md:-bottom-20 lg:-bottom-12 xl:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] md:h-[180px] lg:h-[197px] xl:h-[290px]"
+        className="relative -bottom-5 md:-bottom-20 lg:-bottom-12 xl:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] md:h-[180px] lg:h-[197px] xl:h-[239px]"
       >
         <Image
           src="/images/phoneMockup.webp"

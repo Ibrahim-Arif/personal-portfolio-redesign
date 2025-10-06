@@ -72,7 +72,7 @@ const CareerJourneyCard = () => {
         Career <span className="text-button">Journey</span>
       </h2>
 
-      <div className="relative h-[182px] md:h-[140px] lg:h-[182px] xl:h-72 overflow-hidden">
+      <div className="relative h-[182px] md:h-[140px] lg:h-[182px] xl:h-60 overflow-hidden">
         <div className="absolute left-3 top-0 bottom-0 w-[2px] bg-primaryBlack"></div>
 
         <motion.div

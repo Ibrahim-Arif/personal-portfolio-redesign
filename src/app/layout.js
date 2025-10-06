@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
 import Header from "@/component/Header";
+import WhatsAppButton from "@/component/WhatsAppButton";
+import Footer from "@/component/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,6 +39,17 @@ const SfProDisplay = localFont({
     },
   ],
   variable: "--font-SfProDisplay",
+});
+
+const PlusJakartaSans = localFont({
+  src: [
+    {
+      path: "../../public/fonts/PlusJakartaSans-Italic.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--font-PlusJakartaSans",
 });
 
 export const metadata = {
@@ -83,10 +96,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} ${PlusJakartaSans.variable} antialiased`}
       >
         <Header />
+        <div
+          className="absolute top-5 right-0 bg-gradient-red w-1/3 h-1/3 opacity-40 border-radius-50% blur-3xl"
+          style={{ "--gradient-direction": "to bottom left" }}
+        ></div>
         {children}
+        <WhatsAppButton />
+        <Footer />
       </body>
     </html>
   );

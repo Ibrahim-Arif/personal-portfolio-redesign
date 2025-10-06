@@ -33,7 +33,7 @@ export default function Home() {
         // onClick={() => router.push(`/portfolio`)}
         delay={0.2}
       />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }

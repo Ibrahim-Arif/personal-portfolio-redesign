@@ -159,7 +159,7 @@ const HonorsAwards = () => {
       </motion.div>
 
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden sm:mx-4 xl:mx-0"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}

@@ -64,7 +64,7 @@ const SocialMediaCards = () => {
             <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
           </motion.div>
         </motion.div>
-        <div className="grid grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5 md:gap-6">
+        <div className="flex flex-wrap items-center justify-center xl:justify-between max-w-[1200px] mx-auto gap-4 xl:gap-0">
           {socialData.map((social, index) => (
             <SocialCard
               key={index}

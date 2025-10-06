@@ -6,6 +6,10 @@
 }
 
 @layer utilities {
+  .font-PlusJakartaSans-italic {
+    font-family: var(--font-PlusJakartaSans);
+    font-weight: 400;
+  }
   .font-SfProDisplay-regular {
     font-family: var(--font-SfProDisplay);
     font-weight: 400;

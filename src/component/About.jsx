@@ -13,7 +13,7 @@ import AboutCard from "./AboutCard";
 const About = () => {
   return (
     <div className="bg-offwhite pt-12 sm:py-8">
-      <div className="flex md:flex-row flex-col max-w-7xl mx-auto px-4 items-center">
+      <div className="flex md:flex-row flex-col max-w-7xl mx-auto px-4 xl:px-0 items-center">
         <div className="lg:flex-shrink-0 items-center flex">
           <AboutCard />
         </div>
@@ -30,10 +30,10 @@ const About = () => {
             </div>
 
             <div className="flex items-center justify-between">
-              <div className="pl-4 pt-6">
+              <div className="pl-4 pt-3">
                 <ExpertiseTags />
               </div>
-              <div className="pl-4 pt-6 flex-1">
+              <div className="pl-4 pt-3 flex-1">
                 <TeamLeadership />
               </div>
             </div>

@@ -61,7 +61,7 @@ const Feedback = () => {
       className="pb-20 bg-gradient-lightgrey mt-20 pt-14"
       style={{ "--gradient-direction": "to bottom" }}
     >
-      <div className="container mx-auto px-4 max-w-7xl">
+      <div className="container mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -73,7 +73,7 @@ const Feedback = () => {
           </h1>
           <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-4 xl:mx-0">
           {feedbacks.map((feedback, index) => (
             <motion.div
               key={index}
@@ -90,15 +90,15 @@ const Feedback = () => {
                 y: -6,
                 transition: { duration: 0.3, ease: [0.22, 0.61, 0.36, 0.4] },
               }}
-              className="bg-white rounded-4xl transition-shadow duration-300 h-full border-2 border-[#E5E7EB]"
+              className="bg-white rounded-2xl transition-shadow duration-300 h-full border-2 border-[#E5E7EB]"
             >
-              <div className="flex flex-col justify-between px-5 py-4 h-full">
+              <div className="flex flex-col justify-between px-6 py-6 h-full">
                 <div className="flex flex-col justify-between h-full">
-                  <blockquote className="text-base md:text-xl italic mb-4 text-tertiary">
+                  <blockquote className="text-base md:text-lg font-PlusJakartaSans-italic mb-4 text-tertiary">
                     "{feedback.text}"
                   </blockquote>
 
-                  <div className="flex items-center">
+                  <div className="flex items-center pt-3">
                     <div className="relative inline-flex h-12 w-12 md:w-16 md:h-16 mr-4">
                       <Image
                         src={feedback.clientImage}
@@ -109,13 +109,13 @@ const Feedback = () => {
                       />
                     </div>
                     <div className="flex-grow font-SfProDisplay-regular">
-                      <p className="text-secondary text-base md:text-xl">
+                      <p className="text-secondary text-base md:text-lg">
                         {feedback.clientName}
                       </p>
-                      <p className="text-sm md:text-base text-grayC">
+                      <p className="text-sm text-grayC">
                         {feedback.clientRole}
                       </p>
-                      <p className="text-sm md:text-base text-grayC">
+                      <p className="text-sm text-grayC">
                         {feedback.clientCountry}
                       </p>
                     </div>
@@ -124,7 +124,7 @@ const Feedback = () => {
                       href={feedback.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 bg-[#F0F0F0] rounded-full hover:bg-[#E0E0E0] transition-colors duration-300"
+                      className="p-2 rounded-full hover:bg-[#E0E0E0] transition-colors duration-300"
                       whileHover={{ scale: 1.15 }}
                       whileTap={{ scale: 0.95 }}
                       transition={{
@@ -141,7 +141,7 @@ const Feedback = () => {
             </motion.div>
           ))}
         </div>
-        <div className="flex justify-center mt-20">
+        <div className="flex justify-center mt-28 px-4">
           <CTA title="See all the client feedbacks" buttonText="Lets Go" />
         </div>
       </div>
