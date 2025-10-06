@@ -100,7 +100,7 @@ export default function RootLayout({ children }) {
       >
         <Header />
         <div
-          className="absolute top-5 right-0 bg-gradient-red w-1/3 h-1/3 opacity-40 border-radius-50% blur-3xl"
+          className="absolute top-5 right-0 bg-gradient-red w-2/3 sm:w-1/3 h-2/3 opacity-30 border-radius-80% blur-2xl"
           style={{ "--gradient-direction": "to bottom left" }}
         ></div>
         {children}

@@ -17,7 +17,7 @@ const AboutCard = () => {
         }}
         className="bg-white rounded-3xl overflow-hidden w-full max-w-sm md:max-w-[282px] lg:max-w-[326px] xl:max-w-[412px]"
       >
-        <div className="p-6 md:p-4 lg:px-8">
+        <div className="p-6 md:p-4">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ const AboutCard = () => {
               delay: 0.3,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold mb-1"
+            className="text-2xl md:text-lg lg:text-[28px] font-SfProDisplay-semibold"
           >
             Building, Scaling
           </motion.h2>
@@ -42,7 +42,7 @@ const AboutCard = () => {
               delay: 0.4,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold text-button mb-4 md:mb-6"
+            className="text-2xl md:text-lg lg:text-[28px] font-SfProDisplay-semibold text-button mb-2"
           >
             & Leading
           </motion.h2>
@@ -56,7 +56,7 @@ const AboutCard = () => {
               delay: 0.5,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-gradient-gray text-base md:text-sm lg:text-lg xl:text-2xl leading-relaxed font-SfProDisplay-regular"
+            className="text-gradient-gray text-base md:text-sm lg:text-lg xl:text-xl  font-SfProDisplay-regular"
           >
             As a founder and project manager, I help building mobile solutions
             that help businesses scale.
@@ -73,7 +73,7 @@ const AboutCard = () => {
             delay: 0.6,
             ease: [0.16, 0.84, 0.44, 1],
           }}
-          className="relative w-full h-[202px] md:h-[220px] lg:h-[265px] xl:h-[305px]"
+          className="relative w-full h-[202px] md:h-[220px] lg:h-[265px] xl:h-[365px]"
         >
           <Image
             src="/images/profile.webp"

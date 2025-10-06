@@ -38,11 +38,11 @@ export default function Hero() {
         variants={backgroundVariants}
         initial="hidden"
         animate="visible"
-        className="absolute top-[38%] lg:top-1/4 w-full "
+        className="absolute top-1/3 lg:top-1/4 w-full "
       />
 
       {/* Text Content */}
-      <div className="relative z-10 flex flex-col items-center text-center xs:px-6">
+      <div className="absolute top-1/3 z-10 flex flex-col items-center text-center xs:px-6">
         {/* Heading */}
         <motion.h1
           initial={{ y: -50, opacity: 0 }}
