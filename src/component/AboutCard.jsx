@@ -17,7 +17,7 @@ const AboutCard = () => {
         }}
         className="bg-white rounded-3xl overflow-hidden w-full max-w-sm md:max-w-[282px] lg:max-w-[326px] xl:max-w-[412px]"
       >
-        <div className="p-6 md:p-4">
+        <div className="p-6 md:px-7 md:pt-7 md:pb-2">
           <motion.h2
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}

@@ -27,7 +27,7 @@ const DeliveredApps = () => {
           delay: 0.2,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="flex flex-row sm:flex-col space-x-2 sm:space-x-0"
+        className="flex flex-row sm:flex-col space-x-2 sm:space-x-0 pt-1"
       >
         <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px]  font-SfProDisplay-semibold leading-none">
           Delivered {"  "}
