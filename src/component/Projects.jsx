@@ -182,7 +182,7 @@ const Project = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mt-24 mb-24"
+          className="text-center mt-24 mb-16"
         >
           <h1 className="text-4xl font-SfProDisplay-regular text-custom-black mb-3">
             <span className="font-SfProDisplay-regular"> Projects </span>

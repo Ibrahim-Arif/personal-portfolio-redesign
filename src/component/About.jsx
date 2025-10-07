@@ -12,7 +12,7 @@ import AboutCard from "./AboutCard";
 
 const About = () => {
   return (
-    <div className="bg-offwhite pt-12 sm:py-8">
+    <div className="bg-offwhite pt-12 sm:py-16">
       <div className="flex md:flex-row flex-col max-w-7xl mx-auto px-4 xl:px-0 items-center">
         <div className="lg:flex-shrink-0 items-center flex">
           <AboutCard />

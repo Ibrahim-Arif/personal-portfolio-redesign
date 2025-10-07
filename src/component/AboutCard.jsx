@@ -28,7 +28,7 @@ const AboutCard = () => {
               delay: 0.3,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-2xl md:text-lg lg:text-[28px] font-SfProDisplay-semibold"
+            className="text-2xl md:text-lg lg:text-[28px] font-SfProDisplay-semibold leading-none"
           >
             Building, Scaling
           </motion.h2>
@@ -56,7 +56,7 @@ const AboutCard = () => {
               delay: 0.5,
               ease: [0.16, 0.84, 0.44, 1],
             }}
-            className="text-gradient-gray text-base md:text-sm lg:text-lg xl:text-xl  font-SfProDisplay-regular"
+            className="text-gradient-gray text-base md:text-sm lg:text-lg xl:text-xl font-SfProDisplay-regular"
           >
             As a founder and project manager, I help building mobile solutions
             that help businesses scale.
@@ -73,7 +73,7 @@ const AboutCard = () => {
             delay: 0.6,
             ease: [0.16, 0.84, 0.44, 1],
           }}
-          className="relative w-full h-[202px] md:h-[220px] lg:h-[265px] xl:h-[365px]"
+          className="relative w-full h-[202px] md:h-[220px] lg:h-[265px] xl:h-[385px]"
         >
           <Image
             src="/images/profile.webp"

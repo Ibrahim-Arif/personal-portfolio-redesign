@@ -29,10 +29,10 @@ const DeliveredApps = () => {
         }}
         className="flex flex-row sm:flex-col space-x-2 sm:space-x-0"
       >
-        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold mb-2">
+        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px]  font-SfProDisplay-semibold leading-none">
           Delivered {"  "}
         </h2>
-        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px] xl:text-[32px] font-SfProDisplay-semibold ">
+        <h2 className="text-[22px] xs:text-2xl md:text-[18px] lg:text-[28px]  font-SfProDisplay-semibold ">
           <span className="text-button">100+</span> Apps
         </h2>
       </motion.div>
@@ -47,7 +47,7 @@ const DeliveredApps = () => {
           delay: 0.4,
           ease: [0.16, 0.84, 0.44, 1],
         }}
-        className="relative -bottom-5 md:-bottom-20 lg:-bottom-12 xl:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] md:h-[180px] lg:h-[197px] xl:h-[239px]"
+        className="relative -bottom-5 md:-bottom-20 lg:-bottom-12 xl:-bottom-10 mx-auto w-full max-w-xs sm:max-w-sm h-[238px] md:h-[180px] lg:h-[197px] xl:h-[269px]"
       >
         <Image
           src="/images/phoneMockup.webp"
