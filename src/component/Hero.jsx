@@ -59,7 +59,7 @@ export default function Hero() {
               alt="Hand Wave"
               width={70}
               height={70}
-              className="w-10 h-10 md:w-16 md:h-16 object-contain"
+              className="w-10 h-10 md:w-16 md:h-16 object-contain pt-3"
             />
           </motion.span>
           <span className="text-gradient-gray">I'm </span>
