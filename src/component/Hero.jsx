@@ -26,7 +26,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex items-center justify-center h-screen  overflow-hidden bg-gradient-lightwhite -mt-15">
+    <section className="relative flex items-center justify-center h-screen  overflow-hidden bg-gradient-lightwhite -mt-17">
       <motion.img
         src="/images/hero.png"
         alt="Background Line"
