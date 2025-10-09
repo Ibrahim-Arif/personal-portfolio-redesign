@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
-import { motion, useMotionValue, useAnimationControls } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import CTA from "./CTA";
 
 const projectsData = [
@@ -14,40 +14,26 @@ const projectsData = [
   },
   {
     id: 2,
-    title: "HealthTracker",
+    title: "Dressplaner",
     description:
-      "Personal health monitoring app with AI-powered insights and recommendations.",
-    image: "/images/projectPro.png",
+      "Track expenses, set budgets, and stay in control — solo or with a group.",
+    image: "/images/dressplanner.webp",
   },
   {
     id: 3,
-    title: "EduLearn",
+    title: "The Green Felts",
     description:
-      "Interactive learning platform with gamification and progress tracking features.",
-    image: "/images/projectPro.png",
-  },
-  {
-    id: 4,
-    title: "FoodieExplorer",
-    description:
-      "Discover local restaurants, read reviews, and order food with ease.",
-    image: "/images/projectPro.png",
-  },
-  {
-    id: 5,
-    title: "FitnessPro",
-    description:
-      "Complete fitness solution with workout plans, nutrition tracking, and community features.",
-    image: "/images/projectPro.png",
+      "Golf event app with real-time scoring, live leaderboards, and auto winner updates.",
+    image: "/images/felts.webp",
   },
 ];
 
-const ProjectCard = ({ project, index }) => {
+const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <motion.div className="flex-shrink-0 w-[284px] md:w-[370px] overflow-hidden">
+    <motion.div className="flex-shrink-0 w-[284px] md:w-[370px] xl:w-[410px] overflow-hidden">
       <div
-        className="overflow-hidden h-[304px] md:h-96 rounded-2xl"
+        className="overflow-hidden h-[304px] md:h-96 xl:h-[478px] rounded-2xl"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -66,10 +52,10 @@ const ProjectCard = ({ project, index }) => {
       </div>
 
       <div className="p-1 mt-4">
-        <h3 className="text-[28px] font-SfProDisplay-regular text-secondary mb-2">
+        <h3 className="text-[20px] md:text-[28px] font-SfProDisplay-regular text-secondary mb-2">
           {project.title}
         </h3>
-        <p className="text-gray-500 text-base md:text-xl leading-relaxed font-SfProDisplay-regular">
+        <p className="text-gray-500 text-sm md:text-xl leading-relaxed font-SfProDisplay-regular">
           {project.description}
         </p>
       </div>
@@ -78,98 +64,39 @@ const ProjectCard = ({ project, index }) => {
 };
 
 const Project = () => {
-  const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
-  const animationRef = useRef(null);
-  const positionRef = useRef(0);
-  const touchStartRef = useRef(0);
-  const touchEndRef = useRef(0);
-  const isDraggingRef = useRef(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1280);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const cardWidth = isMobile ? 284 : 377;
-  const gap = isMobile ? 24 : 4;
+  const handleScroll = () => {
+    if (!scrollRef.current || !isMobile) return;
 
-  const extendedData = [...projectsData, ...projectsData, ...projectsData];
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const scroll = () => {
-      if (!isPaused) {
-        positionRef.current += 0.5;
-
-        const singleSetWidth = projectsData.length * (cardWidth + gap);
-
-        if (positionRef.current >= singleSetWidth) {
-          positionRef.current = 0;
-        }
-
-        scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
-      }
-
-      animationRef.current = requestAnimationFrame(scroll);
-    };
-
-    animationRef.current = requestAnimationFrame(scroll);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPaused, cardWidth, gap]);
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
+    const container = scrollRef.current;
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = container.clientWidth;
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(index);
   };
 
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
-
-  const handleTouchStart = (e) => {
-    touchStartRef.current = e.touches[0].clientX;
-    isDraggingRef.current = true;
-    setIsPaused(true);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDraggingRef.current) return;
-    touchEndRef.current = e.touches[0].clientX;
-    const diff = touchStartRef.current - touchEndRef.current;
-
-    const scrollContainer = scrollRef.current;
-    if (scrollContainer) {
-      const singleSetWidth = projectsData.length * (cardWidth + gap);
-      positionRef.current = Math.max(
-        0,
-        Math.min(positionRef.current + diff, singleSetWidth - 1)
-      );
-      scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
-    }
-
-    touchStartRef.current = touchEndRef.current;
-  };
-
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
-    setIsPaused(false);
-  };
+  const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
+  const gap = isMobile ? 24 : 32;
+  const cardWidth = `calc(${100 / slidesToShow}% - ${
+    (gap * (slidesToShow - 1)) / slidesToShow
+  }px)`;
 
   return (
-    <div className="w-full pb-16 max-w-7xl mx-auto">
+    <div className="w-full pb-24 max-w-7xl xl:max-w-[1350px] mx-auto scroll-mt-20">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -191,41 +118,58 @@ const Project = () => {
         </motion.div>
       </motion.div>
 
+      {/* Cards container */}
       <div
-        className="relative overflow-hidden mb-20 sm:mx-4 xl:mx-0"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        ref={scrollRef}
+        onScroll={handleScroll}
+        className={`relative mb-16 mx-4 xl:mx-0 flex gap-6 ${
+          isMobile
+            ? "overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar"
+            : "justify-center flex-wrap"
+        }`}
       >
-        <div
-          ref={scrollRef}
-          className="flex"
-          style={{
-            gap: `${gap}px`,
-            willChange: "transform",
-            transition: isPaused ? "transform 0.3s ease-out" : "none",
-          }}
-        >
-          {extendedData.map((project, index) => (
+        {projectsData.map((project, index) => (
+          <div
+            key={index}
+            className={`py-8 ${
+              isMobile ? "flex-shrink-0 w-auto snap-center" : "flex-shrink-0"
+            }`}
+            style={!isMobile ? { width: cardWidth } : {}}
+          >
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+
+      {isMobile && (
+        <div className="flex justify-center mb-12">
+          {projectsData.map((_, index) => (
             <div
-              key={`${project.id}-${index}`}
-              style={{
-                minWidth: `${cardWidth}px`,
-                maxWidth: `${cardWidth}px`,
-              }}
-              className="py-8"
-            >
-              <ProjectCard project={project} />
-            </div>
+              key={index}
+              className={`w-2 h-2 rounded-full mx-1 transition-all duration-300 ${
+                activeIndex === index ? "bg-red-500 scale-110" : "bg-gray-300"
+              }`}
+            />
           ))}
         </div>
-      </div>
+      )}
 
       <div className="px-4">
         <CTA title="See all of my essential work" buttonText="Lets Go" />
       </div>
+
+      <style jsx global>{`
+        /* works for Chrome, Safari, Opera */
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        /* works for Firefox */
+        .hide-scrollbar {
+          scrollbar-width: none;
+          -ms-overflow-style: none; /* IE and Edge */
+          -webkit-overflow-scrolling: touch; /* iOS momentum scrolling */
+        }
+      `}</style>
     </div>
   );
 };

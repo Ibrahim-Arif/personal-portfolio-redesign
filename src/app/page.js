@@ -14,10 +14,10 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <div id="about">
+      <div id="about" className="scroll-mt-8">
         <About />
       </div>
-      <div id="projects">
+      <div id="projects" className="scroll-mt-20">
         <Project />
       </div>
       <HonorsAwards />

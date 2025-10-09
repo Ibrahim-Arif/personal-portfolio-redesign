@@ -64,7 +64,7 @@ export default function Header() {
       className={`sticky top-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/80 backdrop-blur-sm shadow-md"
-          : "bg-background/80 backdrop-blur-sm shadow-md"
+          : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4  py-4 flex justify-between items-center">

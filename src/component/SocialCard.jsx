@@ -36,11 +36,11 @@ const SocialCard = ({
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
       onClick={handleClick}
-      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-52 md:w-44 cursor-pointer shadow-lg overflow-hidden`}
+      className={`${gradientClass} rounded-2xl px-3 py-4 sm:p-6 flex flex-col justify-between h-40 sm:h-44 md:h-48 md:w-[152px] cursor-pointer shadow-lg overflow-hidden`}
     >
       <div className="flex justify-start">
         <motion.div
-          className="w-8 h-8 sm:w-12 sm:h-12 relative"
+          className="w-8 h-8 sm:w-10 sm:h-10 relative"
           animate={{
             scale: isHovered ? 1.2 : 1,
             rotate: isHovered ? 5 : 0,
@@ -60,7 +60,7 @@ const SocialCard = ({
         </motion.div>
       </div>
       <div className="text-white">
-        <h3 className="text-base sm:text-2xl md:text-2xl font-SfProDisplay-semibold mb-1 tracking-wide">
+        <h3 className="text-base sm:text-xl font-SfProDisplay-semibold mb-1 tracking-wide">
           {platform}
         </h3>
         <p className="text-sm sm:text-lg opacity-90 font-SfProDisplay-regular tracking-wide">

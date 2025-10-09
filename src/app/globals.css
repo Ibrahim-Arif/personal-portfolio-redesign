@@ -43,6 +43,14 @@
 
 @layer utilities {
   /* Red Gradient */
+  .bg-gradient-lightwhite {
+    background-image: linear-gradient(
+      var(--gradient-direction, to bottom),
+      #fdf0f5 0%,
+      #fef5f9 10%,
+      #ffffff 100%
+    );
+  }
   .bg-gradient-red {
     background-image: linear-gradient(
       var(--gradient-direction, to right),

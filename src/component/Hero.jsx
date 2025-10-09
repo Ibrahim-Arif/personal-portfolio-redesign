@@ -26,14 +26,9 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative flex items-center justify-center h-screen  overflow-hidden">
-      {/* <div
-        className="absolute top-0 right-0 bg-gradient-red w-1/3 h-1/3 opacity-40 border-radius-50% blur-3xl"
-        style={{ "--gradient-direction": "to bottom left" }}
-      ></div> */}
-
+    <section className="relative flex items-center justify-center h-screen  overflow-hidden bg-gradient-lightwhite -mt-15">
       <motion.img
-        src="/images/hero.svg"
+        src="/images/hero.png"
         alt="Background Line"
         variants={backgroundVariants}
         initial="hidden"
@@ -48,7 +43,6 @@ export default function Hero() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          // className="flex items-center md:items-end gap-3 text-[28px] md:text-[64px] md:leading-20"
           className="flex items-baseline gap-3 text-[28px] md:text-[64px] md:leading-[1.2]"
         >
           <span className="font-SfProDisplay-regular text-gradient-gray ">
@@ -78,10 +72,10 @@ export default function Hero() {
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
-          className=" text-xl font-SfProDisplay-regular md:text-[64px] "
+          className=" text-xl font-SfProDisplay-regular md:text-[50px] "
         >
           <span className="text-gradient-gray">founder of </span>{" "}
-          <span className=" text-button text-[28px] md:text-[64px]">
+          <span className=" text-button text-[28px] md:text-[50px]">
             INFILP
           </span>
         </motion.p>

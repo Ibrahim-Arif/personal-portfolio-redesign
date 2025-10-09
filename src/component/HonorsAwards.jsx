@@ -1,9 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { motion, useAnimation } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import Image from "next/image";
+import { motion } from "framer-motion";
 import AwardCard from "./AwardCard";
 
 const awardsData = [
@@ -46,105 +44,47 @@ const awardsData = [
 ];
 
 const HonorsAwards = () => {
-  const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef(null);
-  const animationRef = useRef(null);
-  const positionRef = useRef(0);
-  const touchStartRef = useRef(0);
-  const touchEndRef = useRef(0);
-  const isDraggingRef = useRef(false);
 
+  // ✅ Handle responsiveness
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
       setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1280);
     };
-
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
-
-  // Triple the data for seamless infinite scroll
-  const extendedData = [...awardsData, ...awardsData, ...awardsData];
-
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
-
-    const scroll = () => {
-      if (!isPaused) {
-        positionRef.current += 0.5;
-
-        const cardWidth = scrollContainer.scrollWidth / 3;
-
-        if (positionRef.current >= cardWidth) {
-          positionRef.current = 0;
-        }
-
-        scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
-      }
-
-      animationRef.current = requestAnimationFrame(scroll);
-    };
-
-    animationRef.current = requestAnimationFrame(scroll);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
-  }, [isPaused]);
-
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-  };
-
-  const handleMouseLeave = () => {
-    setIsPaused(false);
-  };
-
-  const handleTouchStart = (e) => {
-    touchStartRef.current = e.touches[0].clientX;
-    isDraggingRef.current = true;
-    setIsPaused(true);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDraggingRef.current) return;
-    touchEndRef.current = e.touches[0].clientX;
-    const diff = touchStartRef.current - touchEndRef.current;
-
-    const scrollContainer = scrollRef.current;
-    if (scrollContainer) {
-      const cardWidth = scrollContainer.scrollWidth / 3;
-      positionRef.current = Math.max(
-        0,
-        Math.min(positionRef.current + diff, cardWidth - 1)
-      );
-      scrollContainer.style.transform = `translateX(-${positionRef.current}px)`;
-    }
-
-    touchStartRef.current = touchEndRef.current;
-  };
-
-  const handleTouchEnd = () => {
-    isDraggingRef.current = false;
-    setIsPaused(false);
-  };
-
-  const gap = isMobile ? 16 : 16;
+  const slidesToShow = isMobile ? 1 : isTablet ? 2 : 2.5;
+  const gap = 16;
   const cardWidth = `calc(${100 / slidesToShow}% - ${
     (gap * (slidesToShow - 1)) / slidesToShow
   }px)`;
 
+  // ✅ Track active card for dots
+  useEffect(() => {
+    const scrollContainer = scrollRef.current;
+    if (!scrollContainer) return;
+
+    const handleScroll = () => {
+      const scrollLeft = scrollContainer.scrollLeft;
+      const width = scrollContainer.scrollWidth / awardsData.length;
+      const index = Math.round(scrollLeft / width);
+      setActiveIndex(index);
+    };
+
+    scrollContainer.addEventListener("scroll", handleScroll);
+    return () => scrollContainer.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <div className="w-full max-w-7xl mx-auto py-12">
+    <div className="w-full max-w-[1350px] mx-auto py-12 px-4">
+      {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -158,37 +98,54 @@ const HonorsAwards = () => {
         <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
       </motion.div>
 
+      {/* Cards container */}
       <div
-        className="relative overflow-hidden sm:mx-4 xl:mx-0"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
+        ref={scrollRef}
+        className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 snap-x snap-mandatory scroll-smooth"
       >
-        <div
-          ref={scrollRef}
-          className="flex"
-          style={{
-            gap: `${gap}px`,
-            willChange: "transform",
-            transition: isPaused ? "transform 0.3s ease-out" : "none",
-          }}
-        >
-          {extendedData.map((award, index) => (
-            <div
-              key={`${award.id}-${index}`}
-              style={{
-                minWidth: cardWidth,
-                maxWidth: cardWidth,
-              }}
-              className="flex-shrink-0 py-8"
-            >
-              <AwardCard award={award} />
-            </div>
-          ))}
-        </div>
+        {awardsData.map((award, index) => (
+          <div
+            key={index}
+            style={{ minWidth: cardWidth, maxWidth: cardWidth }}
+            className="flex-shrink-0 py-8 px-3 md:px-5 snap-center"
+          >
+            <AwardCard award={award} />
+          </div>
+        ))}
       </div>
+
+      {/* Dots below */}
+      <div className="flex justify-center mt-6 space-x-2 md:hidden">
+        {awardsData.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => {
+              if (scrollRef.current) {
+                const scrollAmount =
+                  (scrollRef.current.scrollWidth / awardsData.length) * index;
+                scrollRef.current.scrollTo({
+                  left: scrollAmount,
+                  behavior: "smooth",
+                });
+              }
+            }}
+            className={`h-2 w-2 rounded-full transition-all duration-300 ${
+              activeIndex === index ? "bg-red-600 scale-125" : "bg-gray-300"
+            }`}
+          ></button>
+        ))}
+      </div>
+
+      {/* Hide scrollbar globally */}
+      <style jsx global>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </div>
   );
 };
