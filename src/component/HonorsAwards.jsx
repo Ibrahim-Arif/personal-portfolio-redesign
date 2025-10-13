@@ -183,7 +183,7 @@ const HonorsAwards = () => {
       </div>
 
       {/* Dots below */}
-      <div className="hidden md:flex justify-center mt-6 space-x-2">
+      <div className="flex justify-center mt-6 space-x-2">
         {awardsData.map((_, index) => (
           <button
             key={index}
