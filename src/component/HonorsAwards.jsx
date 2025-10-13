@@ -171,7 +171,7 @@ const HonorsAwards = () => {
         onMouseUp={handleMouseUp}
         className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 snap-x snap-mandatory scroll-smooth"
       >
-        {[...awardsData, ...awardsData, ...awardsData].map((award, index) => (
+        {awardsData.map((award, index) => (
           <div
             key={index}
             style={{ minWidth: cardWidth, maxWidth: cardWidth }}
@@ -183,7 +183,7 @@ const HonorsAwards = () => {
       </div>
 
       {/* Dots below */}
-      <div className="flex justify-center mt-6 space-x-2">
+      <div className="hidden md:flex justify-center mt-6 space-x-2">
         {awardsData.map((_, index) => (
           <button
             key={index}
