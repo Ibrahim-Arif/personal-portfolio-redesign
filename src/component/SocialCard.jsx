@@ -60,7 +60,7 @@ const SocialCard = ({
         </motion.div>
       </div>
       <div className="text-white">
-        <h3 className="text-base sm:text-lg font-SfProDisplay-semibold mb-1 tracking-wide">
+        <h3 className="text-base sm:text-lg font-SfProDisplay-semibold -mb-0.5 tracking-wide">
           {platform}
         </h3>
         <p className="text-sm sm:text-sm opacity-90 font-SfProDisplay-regular tracking-wide">
