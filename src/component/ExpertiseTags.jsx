@@ -36,7 +36,7 @@ const ExpertiseTags = () => {
             delay: 0.2,
             ease: [0.16, 0.84, 0.44, 1],
           }}
-          className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-medium mb-[132px] xs:mb-[124px] md:mb-6 lg:mb-12 xl:mb-13"
+          className="text-2xl md:text-lg lg:text-[28px] xl:text-[32px] font-SfProDisplay-medium mb-[154px] xs:mb-[144px] md:mb-6 lg:mb-12 xl:mb-13"
         >
           Diverse <span className="text-button">Expertise</span>
         </motion.h2>

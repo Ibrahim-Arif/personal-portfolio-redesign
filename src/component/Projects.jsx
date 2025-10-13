@@ -31,9 +31,9 @@ const projectsData = [
 const ProjectCard = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   return (
-    <motion.div className="flex-shrink-0 w-[284px] md:w-[370px] xl:w-[410px] overflow-hidden">
+    <motion.div className="flex-shrink-0 w-[340px] md:w-[370px] xl:w-[410px] overflow-hidden">
       <div
-        className="overflow-hidden h-[304px] md:h-96 xl:h-[478px] rounded-2xl"
+        className="overflow-hidden h-[340px] md:h-96 xl:h-[478px] rounded-2xl"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
@@ -51,7 +51,7 @@ const ProjectCard = ({ project }) => {
         </motion.div>
       </div>
 
-      <div className="p-1 mt-4">
+      <div className="px-3 py-1 sm:p-1 mt-4">
         <h3 className="text-[20px] md:text-[28px] font-SfProDisplay-regular text-secondary mb-2">
           {project.title}
         </h3>
@@ -67,7 +67,10 @@ const Project = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const scrollRef = useRef(null);
+  const autoScrollIntervalRef = useRef(null);
+  const touchStartRef = useRef(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -79,6 +82,42 @@ const Project = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  // Auto-scroll effect for mobile
+  useEffect(() => {
+    if (!isMobile || !isAutoScrolling || !scrollRef.current) return;
+
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (!scrollRef.current) return;
+
+      const container = scrollRef.current;
+      const cardWidth = container.clientWidth;
+      const nextIndex = (activeIndex + 1) % projectsData.length;
+
+      container.scrollTo({
+        left: cardWidth * nextIndex,
+        behavior: "smooth",
+      });
+
+      setActiveIndex(nextIndex);
+    }, 3000); // Auto-scroll every 3 seconds
+
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+    };
+  }, [isMobile, isAutoScrolling, activeIndex]);
+
+  // const handleScroll = () => {
+  //   if (!scrollRef.current || !isMobile) return;
+
+  //   const container = scrollRef.current;
+  //   const scrollLeft = container.scrollLeft;
+  //   const cardWidth = container.clientWidth;
+  //   const index = Math.round(scrollLeft / cardWidth);
+  //   setActiveIndex(index);
+  // };
+
   const handleScroll = () => {
     if (!scrollRef.current || !isMobile) return;
 
@@ -89,8 +128,47 @@ const Project = () => {
     setActiveIndex(index);
   };
 
+  const handleTouchStart = (e) => {
+    if (!isMobile) return;
+    touchStartRef.current = e.touches[0].clientX;
+    setIsAutoScrolling(false);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isMobile || !touchStartRef.current) return;
+    // User is actively scrolling
+    setIsAutoScrolling(false);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isMobile) return;
+    touchStartRef.current = null;
+    // Resume auto-scrolling after 5 seconds of inactivity
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
+  const handleMouseDown = () => {
+    if (!isMobile) return;
+    setIsAutoScrolling(false);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isMobile) return;
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
   const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
-  const gap = isMobile ? 24 : 32;
+  const gap = isMobile ? 20 : 32;
   const cardWidth = `calc(${100 / slidesToShow}% - ${
     (gap * (slidesToShow - 1)) / slidesToShow
   }px)`;
@@ -122,7 +200,12 @@ const Project = () => {
       <div
         ref={scrollRef}
         onScroll={handleScroll}
-        className={`relative mb-16 mx-4 xl:mx-0 flex gap-6 ${
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        className={`relative mb-4 sm:mb-16 sm:mx-4 xl:mx-0 flex sm:gap-6 ${
           isMobile
             ? "overflow-x-auto snap-x snap-mandatory scroll-smooth hide-scrollbar"
             : "justify-center flex-wrap"

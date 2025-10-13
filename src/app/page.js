@@ -5,6 +5,7 @@ import Feedback from "@/component/Feedback";
 import Footer from "@/component/Footer";
 import Hero from "@/component/Hero";
 import HonorsAwards from "@/component/HonorsAwards";
+import Intro from "@/component/Intro";
 import Project from "@/component/Projects";
 import Publication from "@/component/Publication";
 import SocialMediaCards from "@/component/SocialMediaCards";
@@ -13,7 +14,8 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      <Intro />
       <div id="about" className="scroll-mt-8">
         <About />
       </div>

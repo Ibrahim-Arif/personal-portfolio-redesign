@@ -31,6 +31,10 @@
   }
 }
 
+@theme {
+  --color-primary: hsl(343 98% 49%);
+  --color-primary-foreground: hsl(0 0% 100%);
+}
 /* global.css */
 :root {
   --color-button: #f70548;
@@ -42,6 +46,10 @@
 }
 
 @layer utilities {
+  .bg-gradient-primary {
+    background-image: linear-gradient(to right, #f70548, #ff4f7a, #ffffff);
+  }
+
   /* Red Gradient */
   .bg-gradient-lightwhite {
     background-image: linear-gradient(
@@ -123,6 +131,13 @@
 
   .text-gradient-gray {
     background: linear-gradient(to right, #5e6e7a, #7a8c99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text; /* For Firefox */
+    color: transparent;
+  }
+  .text-gradient-primary {
+    background: linear-gradient(to right, #f70548, #ff4f7a, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text; /* For Firefox */

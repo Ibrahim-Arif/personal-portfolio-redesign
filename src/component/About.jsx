@@ -96,10 +96,12 @@ const About = () => {
 
           <style jsx global>{`
             .swiper-pagination {
-              bottom: -20 !important;
+              position: relative !important;
+              bottom: 0px !important;
+              margin-top: 24px !important;
             }
             .swiper-pagination-bullet {
-              background: #333;
+              background: #ff0000;
               opacity: 0.5;
             }
             .swiper-pagination-bullet-active {

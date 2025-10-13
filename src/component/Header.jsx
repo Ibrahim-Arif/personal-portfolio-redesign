@@ -62,15 +62,13 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-background/80 backdrop-blur-sm shadow-md"
-          : "bg-transparent"
+        isScrolled ? "bg-white/85 backdrop-blur-xs shadow-md" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4  py-4 flex justify-between items-center">
+      <nav className="max-w-[1320px] mx-auto px-4 py-4 flex justify-between items-center">
         <a
           href="#"
-          className="text-base md:text-xl font-SfProDisplay-bold text-button"
+          className="text-base md:text-2xl font-SfProDisplay-bold text-button"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif

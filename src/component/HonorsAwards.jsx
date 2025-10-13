@@ -47,7 +47,10 @@ const HonorsAwards = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const scrollRef = useRef(null);
+  const autoScrollIntervalRef = useRef(null);
+  const touchStartRef = useRef(null);
 
   // ✅ Handle responsiveness
   useEffect(() => {
@@ -60,7 +63,70 @@ const HonorsAwards = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const slidesToShow = isMobile ? 1 : isTablet ? 2 : 2.5;
+  useEffect(() => {
+    if (!isMobile || !isAutoScrolling || !scrollRef.current) return;
+
+    autoScrollIntervalRef.current = setInterval(() => {
+      if (!scrollRef.current) return;
+
+      const container = scrollRef.current;
+      const width = container.scrollWidth / awardsData.length;
+      const nextIndex = (activeIndex + 1) % awardsData.length;
+
+      container.scrollTo({
+        left: width * nextIndex,
+        behavior: "smooth",
+      });
+
+      setActiveIndex(nextIndex);
+    }, 3000);
+
+    return () => {
+      if (autoScrollIntervalRef.current) {
+        clearInterval(autoScrollIntervalRef.current);
+      }
+    };
+  }, [isMobile, isAutoScrolling, activeIndex]);
+
+  // ✅ Handle touch events
+  const handleTouchStart = (e) => {
+    if (!isMobile) return;
+    touchStartRef.current = e.touches[0].clientX;
+    setIsAutoScrolling(false);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const handleTouchMove = () => {
+    if (!isMobile || !touchStartRef.current) return;
+    setIsAutoScrolling(false);
+  };
+
+  const handleTouchEnd = () => {
+    if (!isMobile) return;
+    touchStartRef.current = null;
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
+  const handleMouseDown = () => {
+    if (!isMobile) return;
+    setIsAutoScrolling(false);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (!isMobile) return;
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
+  const slidesToShow = isMobile ? 1.1 : isTablet ? 2 : 2.5;
   const gap = 16;
   const cardWidth = `calc(${100 / slidesToShow}% - ${
     (gap * (slidesToShow - 1)) / slidesToShow
@@ -83,7 +149,7 @@ const HonorsAwards = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-[1350px] mx-auto py-12 px-4">
+    <div className="w-full max-w-[1350px] mx-auto py-12 sm:px-4">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -101,13 +167,18 @@ const HonorsAwards = () => {
       {/* Cards container */}
       <div
         ref={scrollRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
         className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 snap-x snap-mandatory scroll-smooth"
       >
         {awardsData.map((award, index) => (
           <div
             key={index}
             style={{ minWidth: cardWidth, maxWidth: cardWidth }}
-            className="flex-shrink-0 py-8 px-3 md:px-5 snap-center"
+            className="flex-shrink-0 py-8 px-2 sm:px-3 md:px-5 snap-center"
           >
             <AwardCard award={award} />
           </div>
