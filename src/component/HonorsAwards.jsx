@@ -64,7 +64,7 @@ const HonorsAwards = () => {
   }, []);
 
   useEffect(() => {
-    if (!isMobile || !isAutoScrolling || !scrollRef.current) return;
+    if (!isAutoScrolling || !scrollRef.current) return;
 
     autoScrollIntervalRef.current = setInterval(() => {
       if (!scrollRef.current) return;
@@ -104,7 +104,6 @@ const HonorsAwards = () => {
   };
 
   const handleTouchEnd = () => {
-    if (!isMobile) return;
     touchStartRef.current = null;
     setTimeout(() => {
       setIsAutoScrolling(true);
@@ -112,7 +111,6 @@ const HonorsAwards = () => {
   };
 
   const handleMouseDown = () => {
-    if (!isMobile) return;
     setIsAutoScrolling(false);
     if (autoScrollIntervalRef.current) {
       clearInterval(autoScrollIntervalRef.current);
@@ -120,13 +118,12 @@ const HonorsAwards = () => {
   };
 
   const handleMouseUp = () => {
-    if (!isMobile) return;
     setTimeout(() => {
       setIsAutoScrolling(true);
     }, 5000);
   };
 
-  const slidesToShow = isMobile ? 1.1 : isTablet ? 2 : 2.5;
+  const slidesToShow = isMobile ? 1.1 : isTablet ? 2 : 3;
   const gap = 16;
   const cardWidth = `calc(${100 / slidesToShow}% - ${
     (gap * (slidesToShow - 1)) / slidesToShow
@@ -174,7 +171,7 @@ const HonorsAwards = () => {
         onMouseUp={handleMouseUp}
         className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 snap-x snap-mandatory scroll-smooth"
       >
-        {awardsData.map((award, index) => (
+        {[...awardsData, ...awardsData, ...awardsData].map((award, index) => (
           <div
             key={index}
             style={{ minWidth: cardWidth, maxWidth: cardWidth }}
@@ -186,7 +183,7 @@ const HonorsAwards = () => {
       </div>
 
       {/* Dots below */}
-      <div className="flex justify-center mt-6 space-x-2 md:hidden">
+      <div className="flex justify-center mt-6 space-x-2">
         {awardsData.map((_, index) => (
           <button
             key={index}

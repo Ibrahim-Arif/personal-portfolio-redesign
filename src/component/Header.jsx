@@ -68,7 +68,7 @@ export default function Header() {
       <nav className="max-w-[1320px] mx-auto px-4 py-4 flex justify-between items-center">
         <a
           href="#"
-          className="text-base md:text-2xl font-SfProDisplay-bold text-button"
+          className="text-base md:text-2xl font-bold text-button"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif
@@ -102,7 +102,7 @@ export default function Header() {
                 href={`#${item.id}`}
                 className={`transition-colors duration-200 sm:text-base md:text-[20px] ${
                   activeSection === item.id
-                    ? "text-red-500 font-SfProDisplay-semibold"
+                    ? "text-red-500 font-regular"
                     : "hover:text-red-500 text-black"
                 }`}
                 onClick={(e) => {
