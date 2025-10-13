@@ -48,6 +48,16 @@ const PlusJakartaSans = localFont({
       weight: "400",
       style: "normal",
     },
+    {
+      path: "../../public/fonts/PlusJakartaSans-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/PlusJakartaSans-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
   ],
   variable: "--font-PlusJakartaSans",
 });
@@ -96,13 +106,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} ${PlusJakartaSans.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} ${PlusJakartaSans.variable}  antialiased`}
       >
         <Header />
-        {/* <div
-          className="absolute top-5 right-0 bg-gradient-red w-2/3 sm:w-1/3 h-2/3 opacity-30 border-radius-80% blur-2xl"
-          style={{ "--gradient-direction": "to bottom left" }}
-        ></div> */}
         {children}
         <WhatsAppButton />
         <Footer />

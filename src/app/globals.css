@@ -10,6 +10,15 @@
     font-family: var(--font-PlusJakartaSans);
     font-weight: 400;
   }
+  .font-PlusJakartaSans-regular {
+    font-family: var(--font-PlusJakartaSans);
+    font-weight: 400;
+  }
+  .font-PlusJakartaSans-medium {
+    font-family: var(--font-PlusJakartaSans);
+    font-weight: 500;
+  }
+
   .font-SfProDisplay-regular {
     font-family: var(--font-SfProDisplay);
     font-weight: 400;

@@ -65,10 +65,10 @@ export default function Header() {
         isScrolled ? "bg-white/85 backdrop-blur-xs shadow-md" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-[1320px] mx-auto px-4 py-4 flex justify-between items-center">
+      <nav className="max-w-[1320px] mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
         <a
           href="#"
-          className="text-base md:text-2xl font-bold text-button"
+          className="text-base md:text-xl font-PlusJakartaSans-medium text-button"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif
@@ -100,10 +100,10 @@ export default function Header() {
             <li key={item.id}>
               <a
                 href={`#${item.id}`}
-                className={`transition-colors duration-200 sm:text-base md:text-[20px] ${
+                className={`transition-colors duration-200 sm:text-base md:text-[16px] ${
                   activeSection === item.id
-                    ? "text-red-500 font-regular"
-                    : "hover:text-red-500 text-black"
+                    ? "text-red-500 font-PlusJakartaSans-regular"
+                    : "hover:text-red-500 text-black font-PlusJakartaSans-regular"
                 }`}
                 onClick={(e) => {
                   e.preventDefault();
