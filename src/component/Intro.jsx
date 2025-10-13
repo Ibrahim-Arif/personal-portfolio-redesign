@@ -9,7 +9,7 @@ export default function Intro() {
     <section className="relative py-12 md:py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-primary/10 via-primary/5 to-transparent">
       <div className="container mx-auto px-4 text-center">
         <motion.h1
-          className="text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent drop-shadow-sm"
+          className="text-3xl md:text-4xl lg:text-6xl font-inter-bold mb-4 md:mb-6 bg-gradient-to-r from-primary via-primary/90 to-primary/80 bg-clip-text text-transparent drop-shadow-sm"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -22,17 +22,17 @@ export default function Intro() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
-          <p className="text-lg md:text-xl lg:text-2xl text-slate-600/90  tracking-wide">
+          <p className="text-lg md:text-xl lg:text-2xl text-slate-600/90 font-PlusJakartaSans-regular tracking-wide">
             A passionate software engineer specializing in mobile app
             development with React Native.
           </p>
-          <p className="text-lg md:text-xl lg:text-2xl text-slate-600/90  tracking-wide">
+          <p className="text-lg md:text-xl lg:text-2xl text-slate-600/90  tracking-wide font-PlusJakartaSans-regular">
             Founder of{" "}
             <a
               href="https://www.infilp.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hover:text-primary/90 font-semibold"
+              className="text-primary hover:text-primary/90 font-PlusJakartaSans-semiBold"
             >
               INFILP
             </a>
@@ -72,7 +72,7 @@ export default function Intro() {
             <button
               asChild
               size="lg"
-              className="text-base md:text-lg bg-primary text-primary-foreground hover:bg-primary/90 px-3 py-2 rounded-full"
+              className="text-base md:text-lg bg-primary text-primary-foreground hover:bg-primary/90 px-4 md:px-6 py-2 rounded-lg"
             >
               <a
                 href="https://infilp.com/contact"
@@ -93,9 +93,9 @@ export default function Intro() {
 
 function SkillBadge({ icon, text }) {
   return (
-    <div className="flex items-center bg-primary/10 text-primary rounded-full px-3 py-1 md:px-4 md:py-2 text-sm md:text-base">
+    <div className="flex items-center bg-primary/10 text-primary rounded-full px-3 py-1 md:px-4 md:py-2 text-sm md:text-base ">
       {icon}
-      <span className="ml-2">{text}</span>
+      <span className="ml-2 font-PlusJakartaSans-regular">{text}</span>
     </div>
   );
 }

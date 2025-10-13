@@ -3,9 +3,18 @@
 @theme {
   --breakpoint-xs: 400px;
   --breakpoint-xxs: 375px;
+
+  --font-sans: var(--font-PlusJakartaSans), system-ui, sans-serif;
+
+  --color-primary: hsl(343 98% 49%);
+  --color-primary-foreground: hsl(0 0% 100%);
 }
 
 @layer utilities {
+  .font-inter-bold {
+    font-family: var(--font-Inter);
+    font-weight: 700;
+  }
   .font-PlusJakartaSans-italic {
     font-family: var(--font-PlusJakartaSans);
     font-weight: 400;
@@ -17,6 +26,14 @@
   .font-PlusJakartaSans-medium {
     font-family: var(--font-PlusJakartaSans);
     font-weight: 500;
+  }
+  .font-PlusJakartaSans-semiBold {
+    font-family: var(--font-PlusJakartaSans);
+    font-weight: 600;
+  }
+  .font-PlusJakartaSans-bold {
+    font-family: var(--font-PlusJakartaSans);
+    font-weight: 700;
   }
 
   .font-SfProDisplay-regular {
@@ -40,10 +57,6 @@
   }
 }
 
-@theme {
-  --color-primary: hsl(343 98% 49%);
-  --color-primary-foreground: hsl(0 0% 100%);
-}
 /* global.css */
 :root {
   --color-button: #f70548;

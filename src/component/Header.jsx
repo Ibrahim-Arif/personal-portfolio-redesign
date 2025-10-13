@@ -65,10 +65,10 @@ export default function Header() {
         isScrolled ? "bg-white/85 backdrop-blur-xs shadow-md" : "bg-transparent"
       }`}
     >
-      <nav className="max-w-[1320px] mx-auto px-4 py-4 md:py-5 flex justify-between items-center">
+      <nav className="max-w-[1320px] mx-auto px-4 py-4 md:py-[22px] flex justify-between items-center">
         <a
           href="#"
-          className="text-base md:text-xl font-PlusJakartaSans-medium text-button"
+          className="text-base md:text-xl font-sans font-bold text-button"
           onClick={() => scrollToSection("top")}
         >
           Ibrahim Arif

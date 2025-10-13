@@ -46,6 +46,11 @@ const PlusJakartaSans = localFont({
     {
       path: "../../public/fonts/PlusJakartaSans-Italic.ttf",
       weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../../public/fonts/PlusJakartaSans-Regular.ttf",
+      weight: "400",
       style: "normal",
     },
     {
@@ -54,12 +59,28 @@ const PlusJakartaSans = localFont({
       style: "normal",
     },
     {
-      path: "../../public/fonts/PlusJakartaSans-Regular.ttf",
-      weight: "400",
+      path: "../../public/fonts/PlusJakartaSans-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/PlusJakartaSans-Bold.ttf",
+      weight: "700",
       style: "normal",
     },
   ],
   variable: "--font-PlusJakartaSans",
+});
+
+const Inter = localFont({
+  src: [
+    {
+      path: "../../public/fonts/Inter_18pt-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-Inter",
 });
 
 export const metadata = {
@@ -106,7 +127,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} ${PlusJakartaSans.variable}  antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${SfProDisplay.variable} ${PlusJakartaSans.variable} ${Inter.variable} antialiased`}
       >
         <Header />
         {children}

@@ -50,100 +50,137 @@ const HonorsAwards = () => {
   const [isAutoScrolling, setIsAutoScrolling] = useState(true);
   const scrollRef = useRef(null);
   const autoScrollIntervalRef = useRef(null);
-  const touchStartRef = useRef(null);
+  const isScrollingRef = useRef(false);
 
-  // ✅ Handle responsiveness
+  // Handle responsiveness
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1280);
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      setIsTablet(width >= 768 && width < 1280);
     };
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const slidesToShow = isMobile ? 1 : isTablet ? 2 : 3;
+  const gap = isMobile ? 16 : isTablet ? 16 : 16;
+
+  const maxSlides = Math.max(0, awardsData.length - slidesToShow + 1);
+
+  const getCardWidth = () => {
+    if (!scrollRef.current) return 0;
+    const containerWidth = scrollRef.current.offsetWidth;
+    const totalGap = gap * (slidesToShow - 1);
+    return (containerWidth - totalGap) / slidesToShow;
+  };
+
+  const scrollToIndex = (index) => {
+    if (!scrollRef.current || isScrollingRef.current) return;
+
+    // Clamp index to valid range
+    const clampedIndex = Math.max(0, Math.min(index, maxSlides - 1));
+
+    isScrollingRef.current = true;
+    const cardWidth = getCardWidth();
+    const scrollPosition = clampedIndex * (cardWidth + gap);
+
+    scrollRef.current.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+
+    setActiveIndex(clampedIndex);
+
+    setTimeout(() => {
+      isScrollingRef.current = false;
+    }, 500);
+  };
+
   useEffect(() => {
-    if (!isAutoScrolling || !scrollRef.current) return;
+    if (!isAutoScrolling) return;
 
     autoScrollIntervalRef.current = setInterval(() => {
-      if (!scrollRef.current) return;
-
-      const container = scrollRef.current;
-      const width = container.scrollWidth / awardsData.length;
-      const nextIndex = (activeIndex + 1) % awardsData.length;
-
-      container.scrollTo({
-        left: width * nextIndex,
-        behavior: "smooth",
+      setActiveIndex((prevIndex) => {
+        const nextIndex = (prevIndex + 1) % maxSlides;
+        scrollToIndex(nextIndex);
+        return nextIndex;
       });
-
-      setActiveIndex(nextIndex);
-    }, 3000);
+    }, 3500);
 
     return () => {
       if (autoScrollIntervalRef.current) {
         clearInterval(autoScrollIntervalRef.current);
       }
     };
-  }, [isMobile, isAutoScrolling, activeIndex]);
+  }, [isAutoScrolling, slidesToShow, maxSlides]);
 
-  // ✅ Handle touch events
-  const handleTouchStart = (e) => {
-    if (!isMobile) return;
-    touchStartRef.current = e.touches[0].clientX;
-    setIsAutoScrolling(false);
-    if (autoScrollIntervalRef.current) {
-      clearInterval(autoScrollIntervalRef.current);
-    }
-  };
-
-  const handleTouchMove = () => {
-    if (!isMobile || !touchStartRef.current) return;
-    setIsAutoScrolling(false);
-  };
-
-  const handleTouchEnd = () => {
-    touchStartRef.current = null;
-    setTimeout(() => {
-      setIsAutoScrolling(true);
-    }, 5000);
-  };
-
-  const handleMouseDown = () => {
-    setIsAutoScrolling(false);
-    if (autoScrollIntervalRef.current) {
-      clearInterval(autoScrollIntervalRef.current);
-    }
-  };
-
-  const handleMouseUp = () => {
-    setTimeout(() => {
-      setIsAutoScrolling(true);
-    }, 5000);
-  };
-
-  const slidesToShow = isMobile ? 1.1 : isTablet ? 2 : 3;
-  const gap = 16;
-  const cardWidth = `calc(${100 / slidesToShow}% - ${
-    (gap * (slidesToShow - 1)) / slidesToShow
-  }px)`;
-
-  // ✅ Track active card for dots
+  // Track scroll position to update active index
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
+    let scrollTimeout;
     const handleScroll = () => {
-      const scrollLeft = scrollContainer.scrollLeft;
-      const width = scrollContainer.scrollWidth / awardsData.length;
-      const index = Math.round(scrollLeft / width);
-      setActiveIndex(index);
+      clearTimeout(scrollTimeout);
+
+      scrollTimeout = setTimeout(() => {
+        if (isScrollingRef.current) return;
+
+        const cardWidth = getCardWidth();
+        const scrollLeft = scrollContainer.scrollLeft;
+        const index = Math.round(scrollLeft / (cardWidth + gap));
+        const clampedIndex = Math.max(0, Math.min(index, maxSlides - 1));
+
+        setActiveIndex(clampedIndex);
+      }, 100);
     };
 
-    scrollContainer.addEventListener("scroll", handleScroll);
-    return () => scrollContainer.removeEventListener("scroll", handleScroll);
-  }, []);
+    scrollContainer.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      scrollContainer.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [slidesToShow, gap]);
+
+  // Handle user interaction - pause auto-scroll
+  const handleInteractionStart = () => {
+    setIsAutoScrolling(false);
+    if (autoScrollIntervalRef.current) {
+      clearInterval(autoScrollIntervalRef.current);
+    }
+  };
+
+  const handleInteractionEnd = () => {
+    setTimeout(() => {
+      setIsAutoScrolling(true);
+    }, 5000);
+  };
+
+  // Mouse drag functionality (like Swiper)
+  const handleMouseDown = (e) => {
+    if (isMobile) return;
+    handleInteractionStart();
+
+    const startX = e.pageX - scrollRef.current.offsetLeft;
+    const scrollLeft = scrollRef.current.scrollLeft;
+
+    const handleMouseMove = (e) => {
+      const x = e.pageX - scrollRef.current.offsetLeft;
+      const walk = (x - startX) * 1.5;
+      scrollRef.current.scrollLeft = scrollLeft - walk;
+    };
+
+    const handleMouseUp = () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      handleInteractionEnd();
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+  };
 
   return (
     <div className="w-full max-w-[1350px] mx-auto py-12 sm:px-4">
@@ -161,50 +198,53 @@ const HonorsAwards = () => {
         <div className="w-28 h-1 bg-red-500 mx-auto rounded-full"></div>
       </motion.div>
 
-      {/* Cards container */}
       <div
         ref={scrollRef}
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
         onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 snap-x snap-mandatory scroll-smooth"
+        onTouchStart={handleInteractionStart}
+        onTouchEnd={handleInteractionEnd}
+        className="relative flex overflow-x-auto hide-scrollbar sm:mx-4 xl:mx-0 cursor-grab active:cursor-grabbing"
+        style={{
+          gap: `${gap}px`,
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch",
+        }}
       >
         {awardsData.map((award, index) => (
           <div
             key={index}
-            style={{ minWidth: cardWidth, maxWidth: cardWidth }}
-            className="flex-shrink-0 py-8 px-2 sm:px-3 md:px-5 snap-center"
+            className="flex-shrink-0 py-8"
+            style={{
+              width: `calc((100% - ${
+                gap * (slidesToShow - 1)
+              }px) / ${slidesToShow})`,
+              scrollSnapAlign: "start",
+            }}
           >
-            <AwardCard award={award} />
+            <div className="px-2 sm:px-3 md:px-5 h-full">
+              <AwardCard award={award} />
+            </div>
           </div>
         ))}
       </div>
 
-      {/* Dots below */}
-      <div className="flex justify-center mt-6 space-x-2">
-        {awardsData.map((_, index) => (
+      {/* Navigation dots */}
+      <div className="flex justify-center mt-6 gap-2">
+        {Array.from({ length: maxSlides }).map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              if (scrollRef.current) {
-                const scrollAmount =
-                  (scrollRef.current.scrollWidth / awardsData.length) * index;
-                scrollRef.current.scrollTo({
-                  left: scrollAmount,
-                  behavior: "smooth",
-                });
-              }
-            }}
-            className={`h-2 w-2 rounded-full transition-all duration-300 ${
-              activeIndex === index ? "bg-red-600 scale-125" : "bg-gray-300"
+            onClick={() => scrollToIndex(index)}
+            aria-label={`Go to slide ${index + 1}`}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              activeIndex === index
+                ? "bg-red-600 w-8"
+                : "bg-gray-300 w-2 hover:bg-gray-400"
             }`}
-          ></button>
+          />
         ))}
       </div>
 
-      {/* Hide scrollbar globally */}
+      {/* Hide scrollbar */}
       <style jsx global>{`
         .hide-scrollbar::-webkit-scrollbar {
           display: none;
